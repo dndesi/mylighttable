@@ -1,5 +1,5 @@
 // drive.js – Google Drive API Wrapper
-// v2.0 – Multi-Galerie Architektur
+// v2.1 – Public fetch via drive.usercontent.google.com
 
 const Drive = (() => {
   const BASE_URL    = 'https://www.googleapis.com/drive/v3';
@@ -160,10 +160,11 @@ const Drive = (() => {
     });
   }
 
-  // ─── Public fetch (kein OAuth, nur API Key) ───────────────────────────────────
+  // ─── Public fetch (anonym, kein OAuth, kein API Key nötig) ──────────────────
+  // Nutzt drive.usercontent.google.com — unterstützt CORS für öffentliche Dateien
 
   async function loadPublicJson(fileId) {
-    const res = await fetch(`${BASE_URL}/files/${fileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+    const res = await fetch(`https://drive.usercontent.google.com/download?id=${fileId}&export=download&authuser=0`);
     if (!res.ok) throw new Error('Nicht gefunden (HTTP ' + res.status + ')');
     return res.json();
   }

@@ -1,7 +1,8 @@
 // app.js – Frontend Galerie-Logik
-// v2.0 – Multi-Galerie, PIN-Index-Lookup, Bulk-Download
+// v2.1 – Public fetch via drive.usercontent.google.com
 
 const API = 'https://www.googleapis.com/drive/v3';
+const PUBLIC_CDN = 'https://drive.usercontent.google.com/download';
 let pinIndex    = null;   // { hash: publicFileId }
 let galleryMeta = null;   // aktuelle Galerie-Daten
 
@@ -27,7 +28,7 @@ async function loadPinIndex() {
     return;
   }
   try {
-    const res = await fetch(`${API}/files/${fileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+    const res = await fetch(`${PUBLIC_CDN}?id=${fileId}&export=download&authuser=0`);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     pinIndex = await res.json();
     showView('pin');
@@ -61,7 +62,7 @@ async function handlePinSubmit(e) {
 
   // Galerie laden
   try {
-    const res = await fetch(`${API}/files/${galleryFileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+    const res = await fetch(`${PUBLIC_CDN}?id=${galleryFileId}&export=download&authuser=0`);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     galleryMeta = await res.json();
     renderGallery();
