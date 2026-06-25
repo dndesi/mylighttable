@@ -1,8 +1,8 @@
 // app.js – Frontend Galerie-Logik
-// v2.1 – Public fetch via drive.usercontent.google.com
+// v2.2 – Public JSON von GitHub raw (kein CORS-Problem)
 
-const API = 'https://www.googleapis.com/drive/v3';
-const PUBLIC_CDN = 'https://drive.usercontent.google.com/download';
+const API      = 'https://www.googleapis.com/drive/v3';
+const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/master/data';
 let pinIndex    = null;   // { hash: publicFileId }
 let galleryMeta = null;   // aktuelle Galerie-Daten
 
@@ -22,13 +22,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ─── PIN-Index laden ──────────────────────────────────────────────────────────
 
 async function loadPinIndex() {
-  const fileId = CONFIG.PUBLIC_INDEX_FILE_ID || localStorage.getItem('pin_index_file_id');
-  if (!fileId) {
-    showError('Keine Galerie konfiguriert. Bitte zuerst im Admin eine Galerie anlegen.');
-    return;
-  }
   try {
-    const res = await fetch(`${PUBLIC_CDN}?id=${fileId}&export=download&authuser=0`);
+    const res = await fetch(`${RAW_BASE}/pin_index.json`);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     pinIndex = await res.json();
     showView('pin');
@@ -60,9 +55,9 @@ async function handlePinSubmit(e) {
     return;
   }
 
-  // Galerie laden
+  // Galerie laden (galleryFileId = galleryId aus pin_index)
   try {
-    const res = await fetch(`${PUBLIC_CDN}?id=${galleryFileId}&export=download&authuser=0`);
+    const res = await fetch(`${RAW_BASE}/gallery_public_${galleryFileId}.json`);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     galleryMeta = await res.json();
     renderGallery();

@@ -31,6 +31,21 @@
     </header>
     <main class="admin-content" id="list-section">
       <div id="list-status" class="status-bar"></div>
+
+      <!-- GitHub Token Setup (einmalig) -->
+      <div id="github-token-bar" style="display:none" class="section-card">
+        <h2>🔗 GitHub Verbindung einrichten</h2>
+        <p style="color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:16px">
+          Einmalig nötig damit Galerien im Frontend sichtbar sind.<br>
+          Erstelle ein Token unter: <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained</strong><br>
+          Berechtigung: <strong>Contents → Read & Write</strong> für das Repo <code>mylighttable</code>
+        </p>
+        <div style="display:flex;gap:8px">
+          <input id="input-github-token" type="password" placeholder="github_pat_..." style="flex:1">
+          <button onclick="saveGithubToken()" class="btn btn-primary btn-sm">Speichern</button>
+        </div>
+      </div>
+
       <div id="list-empty" style="display:none" class="list-empty">
         Noch keine Galerien. Klick auf „+ Neue Galerie" um zu starten.
       </div>
@@ -118,9 +133,10 @@
 
   <!-- Google Identity Services -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="js/config.js?v=2.0"></script>
+  <script src="js/config.js?v=2.1"></script>
   <script src="js/auth.js?v=2.0"></script>
-  <script src="js/drive.js?v=2.0"></script>
-  <script src="js/admin.js?v=2.0"></script>
+  <script src="js/drive.js?v=2.1"></script>
+  <script src="js/github.js?v=1.0"></script>
+  <script src="js/admin.js?v=2.1"></script>
 </body>
 </html>

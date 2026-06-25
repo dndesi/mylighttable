@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.0 – Multi-Galerie Architektur
+// v2.1 – GitHub-Sync für CORS-freie JSON-Daten
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 async function onLogin() {
   showView('list');
+  checkGithubToken();
   await loadGalleryList();
 }
 
@@ -215,10 +216,20 @@ async function refreshPinIndex() {
   const pinObj = {};
   for (const g of state.galleries) {
     const hash = await hashPin(g.pin);
-    pinObj[hash] = g.publicFileId;
+    pinObj[hash] = g.id;  // Gallery-ID → GitHub-Pfad data/gallery_public_{id}.json
   }
+
+  // Drive-Backup
   const fileId = await Drive.savePinIndex(pinObj);
   showPinIndexHint(fileId);
+
+  // GitHub (Frontend liest von hier)
+  try {
+    await GitHub.saveFile('data/pin_index.json', pinObj);
+  } catch (e) {
+    showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
+  }
+
   return fileId;
 }
 
@@ -257,6 +268,7 @@ async function deleteGallery(id) {
   try {
     if (g.folderId) await Drive.deleteFolder(g.folderId).catch(() => {});
     if (g.publicFileId) await Drive.deleteFile(g.publicFileId).catch(() => {});
+    await GitHub.deleteFile(`data/gallery_public_${id}.json`).catch(() => {});
     state.galleries = state.galleries.filter(x => x.id !== id);
     await Drive.saveGalleriesIndex({ galleries: state.galleries });
     await refreshPinIndex();
@@ -374,7 +386,6 @@ async function setHero(fileId) {
 
 async function syncCurrentGalleryPublic() {
   if (!state.current) return;
-  const pin = state.current.pin;
   const publicData = {
     galleryName: state.current.name,
     description: state.current.description || '',
@@ -383,11 +394,19 @@ async function syncCurrentGalleryPublic() {
     files: state.files.map(f => ({ id: f.id, name: f.name, mimeType: f.mimeType || '' })),
     updatedAt: new Date().toISOString()
   };
+
+  // Drive-Backup
   await Drive.saveGalleryPublicFile(state.current.id, publicData, state.current.publicFileId);
+
+  // GitHub (Frontend liest von hier)
+  try {
+    await GitHub.saveFile(`data/gallery_public_${state.current.id}.json`, publicData);
+  } catch (e) {
+    console.warn('GitHub sync:', e.message);
+  }
 
   // fileCount in Index aktualisieren
   state.current.fileCount = state.files.length;
-  state.current.heroFileId = state.current.heroFileId;
   state.galleries = state.galleries.map(g => g.id === state.current.id ? { ...g, ...state.current } : g);
   await Drive.saveGalleriesIndex({ galleries: state.galleries });
 }
@@ -441,6 +460,29 @@ function renderMediaGrid() {
         </div>
       </div>`;
   }).join('');
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+// ─── GitHub Token Setup ───────────────────────────────────────────────────────
+
+function checkGithubToken() {
+  const bar = document.getElementById('github-token-bar');
+  if (bar) bar.style.display = GitHub.getToken() ? 'none' : 'block';
+}
+
+function saveGithubToken() {
+  const val = document.getElementById('input-github-token').value.trim();
+  if (!val) return;
+  GitHub.setToken(val);
+  document.getElementById('input-github-token').value = '';
+  checkGithubToken();
+  showListStatus('GitHub Token gespeichert ✓', 'success');
+}
+
+function resetGithubToken() {
+  GitHub.setToken(null);
+  checkGithubToken();
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
