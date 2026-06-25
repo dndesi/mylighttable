@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MyLighttable – Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
+  <link rel="stylesheet" href="css/admin.css?v=2.1">
+</head>
+<body>
+
+  <!-- ═══ LOGIN ═══════════════════════════════════════════════════════════ -->
+  <div id="view-login">
+    <h1 class="admin-site-title">MyLighttable</h1>
+    <div class="login-card">
+      <p>Melde dich mit deinem Google-Account an.</p>
+      <button id="btn-login" class="btn btn-primary" style="width:100%">Mit Google anmelden</button>
+    </div>
+  </div>
+
+  <!-- ═══ GALERIE-LISTE ═══════════════════════════════════════════════════ -->
+  <div id="view-list" style="display:none">
+    <header class="admin-header">
+      <div class="logo">🔦 MyLighttable <span>Admin</span></div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="btn-new-gallery" class="btn btn-primary btn-sm">+ Neue Galerie</button>
+        <button id="btn-logout" class="btn-logout" onclick="Auth.logout()">Abmelden</button>
+      </div>
+    </header>
+    <main class="admin-content" id="list-section">
+      <div id="list-status" class="status-bar"></div>
+      <div id="list-empty" style="display:none" class="list-empty">
+        Noch keine Galerien. Klick auf „+ Neue Galerie" um zu starten.
+      </div>
+      <div id="gallery-list"></div>
+    </main>
+  </div>
+
+  <!-- ═══ GALERIE-DETAIL ══════════════════════════════════════════════════ -->
+  <div id="view-detail" style="display:none">
+    <header class="admin-header">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button id="btn-back" class="btn-back">← Zurück</button>
+        <span id="detail-title" class="logo">Neue Galerie</span>
+      </div>
+      <button class="btn-logout" onclick="Auth.logout()">Abmelden</button>
+    </header>
+    <main class="admin-content">
+      <div id="detail-status" class="status-bar"></div>
+
+      <!-- Einstellungen -->
+      <section class="section-card">
+        <h2>Einstellungen</h2>
+        <div class="field-row">
+          <div class="field">
+            <label for="input-name">Galerie-Name
+              <button class="help-icon" data-tip="Wird als Titel in der Galerie angezeigt.">?</button>
+            </label>
+            <input id="input-name" type="text" placeholder="z. B. Rewe-Lauf 2026">
+          </div>
+          <div class="field">
+            <label for="input-pin">PIN (4 Ziffern)
+              <button class="help-icon" data-tip="Jede Galerie hat ihren eigenen PIN. Kein anderer darf denselben PIN haben.">?</button>
+            </label>
+            <input id="input-pin" type="text" maxlength="4" pattern="[0-9]{4}" inputmode="numeric" placeholder="z. B. 1234">
+          </div>
+        </div>
+        <div class="field">
+          <label for="input-description">Beschreibungstext
+            <button class="help-icon" data-tip="Erscheint unter dem Hero-Bild für den Besucher.">?</button>
+          </label>
+          <textarea id="input-description" rows="3" placeholder="Kurzer Text für den Kunden…"></textarea>
+        </div>
+        <div class="field" style="max-width:280px">
+          <label for="input-expiry">Ablaufdatum
+            <button class="help-icon" data-tip="Nach diesem Datum werden alle Dateien gelöscht. Wird auch dem Besucher angezeigt.">?</button>
+          </label>
+          <input id="input-expiry" type="date">
+        </div>
+        <div class="action-row">
+          <button id="btn-save-gallery" class="btn btn-primary">Speichern</button>
+          <button id="btn-delete-gallery" class="btn btn-danger" style="display:none">Galerie löschen</button>
+        </div>
+      </section>
+
+      <!-- Upload -->
+      <section id="detail-upload-section" class="section-card" style="display:none">
+        <h2>Medien hochladen
+          <button class="help-icon" data-tip="JPG, PNG, WEBP, MP4, MOV — werden in Google Drive gespeichert.">?</button>
+        </h2>
+        <div class="upload-area">
+          <input id="upload-input" type="file" accept="image/*,video/*" multiple>
+          <label for="upload-input">
+            <strong>Dateien auswählen</strong><br>
+            <span style="font-size:12px">JPG, PNG, WEBP, MP4, MOV</span>
+          </label>
+        </div>
+        <div id="upload-count" class="upload-count"></div>
+        <div id="upload-progress" class="progress-bar">
+          <div class="bar-track"><div class="bar-fill"></div></div>
+          <div id="upload-progress-text" class="progress-text"></div>
+        </div>
+        <button id="btn-upload" class="btn btn-primary" disabled>Hochladen</button>
+      </section>
+
+      <!-- Medien -->
+      <section class="section-card">
+        <h2>Medien
+          <button class="help-icon" data-tip="⭐ = Hero-Bild festlegen. ✕ = Datei löschen.">?</button>
+        </h2>
+        <div id="media-empty" class="media-empty" style="display:none">Noch keine Medien.</div>
+        <div id="media-grid" class="media-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/config.js?v=2.0"></script>
+  <script src="js/auth.js?v=2.0"></script>
+  <script src="js/drive.js?v=2.0"></script>
+  <script src="js/admin.js?v=2.0"></script>
+</body>
+</html>

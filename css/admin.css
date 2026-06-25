@@ -1,0 +1,421 @@
+/* admin.css – Admin Dashboard Styles */
+/* v2.1 – Glassmorphismus + Himmel-Hintergrund */
+
+/* ─── Body Background ────────────────────────────────────────────────────── */
+
+body {
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
+    url('../himmel.png') center / cover no-repeat fixed;
+  min-height: 100vh;
+}
+
+/* ─── Glas-Mixin (wiederverwendet durch mehrere Klassen) ─────────────────── */
+
+.admin-header,
+.login-card,
+.section-card,
+.gallery-list-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────────────── */
+
+.admin-header {
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.admin-header .logo {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.admin-header .logo span {
+  color: var(--accent2);
+  font-weight: 400;
+}
+
+.admin-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+/* ─── Login View ─────────────────────────────────────────────────────────── */
+
+#view-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-site-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-shadow: 0 3px 20px rgba(0,0,0,0.5);
+  margin-bottom: 40px;
+  line-height: 1.1;
+}
+
+.login-card {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 40px 36px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+}
+
+.login-card p {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+/* ─── Section Cards ──────────────────────────────────────────────────────── */
+
+.section-card {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Gallery Status Badge ───────────────────────────────────────────────── */
+
+.gallery-status {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.gallery-status.active {
+  background: rgba(76, 175, 122, 0.15);
+  color: var(--green);
+}
+
+.gallery-status.inactive {
+  background: rgba(160, 160, 160, 0.1);
+  color: var(--accent2);
+}
+
+/* ─── Action Row ─────────────────────────────────────────────────────────── */
+
+.action-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* ─── Upload Area ────────────────────────────────────────────────────────── */
+
+.upload-area {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-bottom: 16px;
+}
+
+.upload-area:hover {
+  border-color: var(--blue);
+}
+
+.upload-area input[type="file"] {
+  display: none;
+}
+
+.upload-area label {
+  cursor: pointer;
+  color: var(--accent2);
+  font-size: 14px;
+  display: block;
+}
+
+.upload-area label strong {
+  color: var(--blue);
+}
+
+.upload-count {
+  font-size: 13px;
+  color: var(--accent2);
+  margin-bottom: 12px;
+  min-height: 18px;
+}
+
+/* ─── Progress Bar ───────────────────────────────────────────────────────── */
+
+.progress-bar {
+  display: none;
+  margin-bottom: 12px;
+}
+
+.progress-bar .bar-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progress-bar .bar-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 3px;
+  transition: width 0.2s;
+  width: 0%;
+}
+
+.progress-bar .progress-text {
+  font-size: 12px;
+  color: var(--accent2);
+}
+
+/* ─── Media Grid ─────────────────────────────────────────────────────────── */
+
+.media-empty {
+  text-align: center;
+  color: var(--accent2);
+  font-size: 14px;
+  padding: 32px 0;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.media-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.15s;
+}
+
+.media-card.is-hero {
+  border-color: var(--yellow);
+}
+
+.media-thumb {
+  aspect-ratio: 1;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.media-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-icon {
+  font-size: 28px;
+  color: var(--accent2);
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: var(--yellow);
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.media-info {
+  padding: 6px 8px 2px;
+}
+
+.media-name {
+  font-size: 11px;
+  color: var(--accent2);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.media-actions {
+  padding: 4px 8px 8px;
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.btn-icon {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--accent2);
+  font-size: 13px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: background 0.12s;
+}
+
+.btn-icon:hover {
+  background: var(--border);
+  color: var(--accent);
+}
+
+.btn-icon.btn-delete:hover {
+  background: rgba(224, 92, 92, 0.15);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+/* ─── Logout Button ──────────────────────────────────────────────────────── */
+
+.btn-logout {
+  background: transparent;
+  color: var(--accent2);
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.btn-logout:hover {
+  color: var(--accent);
+  background: var(--surface2);
+}
+
+/* ─── Gallery List ───────────────────────────────────────────────────────── */
+
+.list-empty {
+  text-align: center;
+  color: var(--accent2);
+  font-size: 14px;
+  padding: 48px 0;
+}
+
+.gallery-list-card {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.glc-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.glc-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.glc-meta {
+  font-size: 13px;
+  color: var(--accent2);
+  margin-top: 4px;
+}
+
+.glc-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+
+.status-badge.active  { background: rgba(76,175,122,0.15); color: var(--green); }
+.status-badge.expired { background: rgba(224,92,92,0.15);  color: var(--red);   }
+
+.btn-sm {
+  padding: 7px 13px;
+  font-size: 13px;
+}
+
+/* ─── Back button ────────────────────────────────────────────────────────── */
+
+.btn-back {
+  background: transparent;
+  color: var(--accent2);
+  font-size: 14px;
+  padding: 4px 0;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.btn-back:hover { color: var(--accent); }
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .admin-content {
+    padding: 20px 16px 80px;
+  }
+
+  .section-card {
+    padding: 18px;
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+}

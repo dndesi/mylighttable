@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MyLighttable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=2.0">
+  <link rel="stylesheet" href="css/gallery.css?v=2.2">
+</head>
+<body>
+
+  <!-- ═══ PIN VIEW ════════════════════════════════════════════════════════ -->
+  <div id="view-pin" style="display:none">
+    <h1 class="pin-site-title">MyLighttable</h1>
+    <div class="pin-card">
+      <p class="pin-subtitle">Bitte deinen PIN eingeben.</p>
+      <form id="pin-form">
+        <div class="field">
+          <input id="pin-input" type="tel" maxlength="4" pattern="[0-9]{4}"
+            inputmode="numeric" autocomplete="off" placeholder="••••" autofocus>
+        </div>
+        <p id="pin-error" class="pin-error"></p>
+        <button type="submit" class="btn btn-primary" style="width:100%">Bestätigen</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══ GALLERY VIEW ════════════════════════════════════════════════════ -->
+  <div id="view-gallery">
+
+    <!-- Hero -->
+    <section id="hero-section" class="hero-section">
+      <img id="hero-image" src="" alt="Hero-Bild">
+      <div class="hero-overlay">
+        <h1 id="hero-title" class="hero-title"></h1>
+      </div>
+    </section>
+
+    <!-- Info -->
+    <div class="gallery-header">
+      <p id="gallery-description"></p>
+      <p id="gallery-expiry" class="gallery-expiry"></p>
+    </div>
+
+    <!-- Aktionen -->
+    <div class="gallery-toolbar">
+      <button id="btn-download-all" class="btn btn-primary" style="display:none">
+        ↓ Alle herunterladen
+      </button>
+      <div id="download-progress" class="progress-bar" style="display:none;margin-top:10px">
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div id="download-progress-text" class="progress-text"></div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <main class="gallery-main">
+      <div id="gallery-grid" class="gallery-grid"></div>
+    </main>
+  </div>
+
+  <!-- ═══ ERROR VIEW ══════════════════════════════════════════════════════ -->
+  <div id="view-error" style="display:none">
+    <div class="error-card">
+      <p style="font-size:32px">⚠️</p>
+      <p id="error-message"></p>
+    </div>
+  </div>
+
+  <!-- ═══ LIGHTBOX ════════════════════════════════════════════════════════ -->
+  <div id="lightbox-overlay" style="display:none">
+    <div class="lightbox-inner">
+      <div id="lightbox-content"></div>
+      <div class="lightbox-actions">
+        <button id="lightbox-close">Schließen</button>
+        <a id="lightbox-download" href="#" download class="btn btn-primary">↓ Download</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSZip für Bulk-Download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="js/config.js?v=2.0"></script>
+  <script src="js/app.js?v=2.0"></script>
+
+</body>
+</html>
