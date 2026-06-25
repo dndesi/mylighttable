@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.1 – GitHub-Sync für CORS-freie JSON-Daten
+// v2.2 – GitHub-Sync auch in saveGallery()
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -175,6 +175,13 @@ async function saveGallery() {
     const publicFileId = await Drive.saveGalleryPublicFile(
       id, publicData, state.current?.publicFileId || null
     );
+
+    // GitHub-Sync (Frontend liest von hier)
+    try {
+      await GitHub.saveFile(`data/gallery_public_${id}.json`, publicData);
+    } catch (e) {
+      showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
+    }
 
     // Galerie-Objekt zusammenbauen
     const updated = {
