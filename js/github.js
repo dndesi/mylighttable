@@ -1,12 +1,10 @@
 // github.js – GitHub API Wrapper für öffentliche JSON-Daten
-// v1.0 – Speichert pin_index + gallery_public_*.json im Repo (kein CORS-Problem)
+// v1.1 – GET mit ?ref=BRANCH damit SHA vom richtigen Branch kommt
 
 const GitHub = (() => {
   const REPO   = 'dndesi/mylighttable';
   const BRANCH = 'master';
   const BASE   = `https://api.github.com/repos/${REPO}/contents`;
-
-  // ─── Token (lokal im Browser, nie im Repo) ──────────────────────────────────
 
   function getToken() {
     return localStorage.getItem('github_pat') || null;
@@ -17,8 +15,6 @@ const GitHub = (() => {
     else localStorage.removeItem('github_pat');
   }
 
-  // ─── Datei anlegen oder aktualisieren ──────────────────────────────────────
-
   async function saveFile(path, contentObj) {
     const token = getToken();
     if (!token) throw new Error('Kein GitHub Token konfiguriert.');
@@ -26,10 +22,10 @@ const GitHub = (() => {
     const url = `${BASE}/${path}`;
     const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2))));
 
-    // Aktuellen SHA holen (nötig für Updates)
+    // SHA vom richtigen Branch holen (nötig fuer Updates)
     let sha = null;
     try {
-      const res = await fetch(url, {
+      const res = await fetch(`${url}?ref=${BRANCH}`, {
         headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
       });
       if (res.ok) sha = (await res.json()).sha;
@@ -57,14 +53,12 @@ const GitHub = (() => {
     return res.json();
   }
 
-  // ─── Datei löschen ─────────────────────────────────────────────────────────
-
   async function deleteFile(path) {
     const token = getToken();
     if (!token) return;
 
     const url = `${BASE}/${path}`;
-    const res = await fetch(url, {
+    const res = await fetch(`${url}?ref=${BRANCH}`, {
       headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
     });
     if (!res.ok) return;
