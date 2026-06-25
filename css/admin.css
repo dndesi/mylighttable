@@ -6,7 +6,7 @@
 body {
   background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
-    url('../himmel.png') center / cover no-repeat fixed;
+    url('../himmel.jpg') center / cover no-repeat fixed;
   min-height: 100vh;
 }
 
