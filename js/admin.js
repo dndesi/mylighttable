@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.2 – GitHub-Sync auch in saveGallery()
+// v2.3 – makeFilePublic für alle Dateien beim Sync
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -401,6 +401,9 @@ async function syncCurrentGalleryPublic() {
     files: state.files.map(f => ({ id: f.id, name: f.name, mimeType: f.mimeType || '' })),
     updatedAt: new Date().toISOString()
   };
+
+  // Alle Dateien öffentlich setzen (auch bereits vorhandene)
+  await Promise.allSettled(state.files.map(f => Drive.makeFilePublic(f.id)));
 
   // Drive-Backup
   await Drive.saveGalleryPublicFile(state.current.id, publicData, state.current.publicFileId);

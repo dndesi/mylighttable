@@ -1,18 +1,22 @@
-// github.js – GitHub API Wrapper für öffentliche JSON-Daten
-// v1.1 – GET mit ?ref=BRANCH damit SHA vom richtigen Branch kommt
+// github.js – GitHub API Wrapper
+// v1.2 – Retry bei SHA-Konflikt (422)
 
 const GitHub = (() => {
   const REPO   = 'dndesi/mylighttable';
   const BRANCH = 'master';
   const BASE   = `https://api.github.com/repos/${REPO}/contents`;
 
-  function getToken() {
-    return localStorage.getItem('github_pat') || null;
-  }
+  function getToken() { return localStorage.getItem('github_pat') || null; }
+  function setToken(t) { t ? localStorage.setItem('github_pat', t.trim()) : localStorage.removeItem('github_pat'); }
 
-  function setToken(token) {
-    if (token) localStorage.setItem('github_pat', token.trim());
-    else localStorage.removeItem('github_pat');
+  async function fetchSha(url, token) {
+    try {
+      const r = await fetch(`${url}?ref=${BRANCH}`, {
+        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
+      });
+      if (r.ok) return (await r.json()).sha;
+    } catch (_) {}
+    return null;
   }
 
   async function saveFile(path, contentObj) {
@@ -22,48 +26,40 @@ const GitHub = (() => {
     const url = `${BASE}/${path}`;
     const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2))));
 
-    // SHA vom richtigen Branch holen (nötig fuer Updates)
-    let sha = null;
-    try {
-      const res = await fetch(`${url}?ref=${BRANCH}`, {
-        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const sha = await fetchSha(url, token);
+
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Update ${path}`,
+          content: b64,
+          branch: BRANCH,
+          ...(sha ? { sha } : {})
+        })
       });
-      if (res.ok) sha = (await res.json()).sha;
-    } catch (_) {}
 
-    const res = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: `Update ${path}`,
-        content: b64,
-        branch: BRANCH,
-        ...(sha ? { sha } : {})
-      })
-    });
+      if (res.ok) return res.json();
 
-    if (!res.ok) {
       const err = await res.json().catch(() => ({}));
+      // Bei SHA-Konflikt: nochmal mit frischer SHA
+      if (res.status === 422) continue;
       throw new Error(err.message || `GitHub Fehler ${res.status}`);
     }
-    return res.json();
+    throw new Error('GitHub: Zu viele Versuche, Datei konnte nicht gespeichert werden.');
   }
 
   async function deleteFile(path) {
     const token = getToken();
     if (!token) return;
-
     const url = `${BASE}/${path}`;
-    const res = await fetch(`${url}?ref=${BRANCH}`, {
-      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
-    });
-    if (!res.ok) return;
-
-    const { sha } = await res.json();
+    const sha = await fetchSha(url, token);
+    if (!sha) return;
     await fetch(url, {
       method: 'DELETE',
       headers: {
