@@ -127,7 +127,7 @@ function renderGrid() {
   grid.innerHTML = files.map((file, index) => {
     const isImage   = file.mimeType?.startsWith('image/');
     const isVideo   = file.mimeType?.startsWith('video/');
-    const thumbUrl  = isImage ? `https://drive.google.com/thumbnail?id=${file.id}&sz=w600` : null;
+    const thumbUrl  = isImage ? `${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}` : null;
     const dlUrl     = `https://drive.google.com/uc?export=download&id=${file.id}`;
 
     return `
