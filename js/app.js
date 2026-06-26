@@ -82,7 +82,7 @@ function renderGallery() {
   const heroSection = document.getElementById('hero-section');
   if (galleryMeta.heroFileId) {
     document.getElementById('hero-image').src =
-      `${API}/files/${galleryMeta.heroFileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`;
+      `https://drive.google.com/thumbnail?id=${galleryMeta.heroFileId}&sz=w1600`;
     document.getElementById('hero-title').textContent = galleryMeta.galleryName || '';
     heroSection.style.display = 'block';
   } else {
@@ -211,7 +211,7 @@ function openLightbox(index) {
   content.innerHTML = isImage
     ? `<img src="${mediaUrl}" alt="${file.name}">`
     : isVideo
-      ? `<video src="${mediaUrl}" controls autoplay></video>`
+      ? `<iframe src="https://drive.google.com/file/d/${file.id}/preview" allowfullscreen style="width:100%;height:100%;min-height:360px;border:none;background:#000"></iframe>`
       : `<p style="color:#fff;padding:24px">${file.name}</p>`;
 
   document.getElementById('lightbox-download').href = dlUrl;

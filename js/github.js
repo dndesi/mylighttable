@@ -1,5 +1,5 @@
 // github.js – GitHub API Wrapper
-// v1.2 – Retry bei SHA-Konflikt (422)
+// v1.3 – Retry bei 409 + 422, mit kurzem Delay
 
 const GitHub = (() => {
   const REPO   = 'dndesi/mylighttable';
@@ -19,6 +19,8 @@ const GitHub = (() => {
     return null;
   }
 
+  const delay = ms => new Promise(r => setTimeout(r, ms));
+
   async function saveFile(path, contentObj) {
     const token = getToken();
     if (!token) throw new Error('Kein GitHub Token konfiguriert.');
@@ -27,8 +29,9 @@ const GitHub = (() => {
     const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(contentObj, null, 2))));
 
     for (let attempt = 0; attempt < 3; attempt++) {
-      const sha = await fetchSha(url, token);
+      if (attempt > 0) await delay(800 * attempt);
 
+      const sha = await fetchSha(url, token);
       const res = await fetch(url, {
         method: 'PUT',
         headers: {
@@ -47,11 +50,10 @@ const GitHub = (() => {
       if (res.ok) return res.json();
 
       const err = await res.json().catch(() => ({}));
-      // Bei SHA-Konflikt: nochmal mit frischer SHA
-      if (res.status === 422) continue;
+      if (res.status === 409 || res.status === 422) continue; // SHA-Konflikt → retry
       throw new Error(err.message || `GitHub Fehler ${res.status}`);
     }
-    throw new Error('GitHub: Zu viele Versuche, Datei konnte nicht gespeichert werden.');
+    throw new Error('GitHub: Datei konnte nach 3 Versuchen nicht gespeichert werden.');
   }
 
   async function deleteFile(path) {
