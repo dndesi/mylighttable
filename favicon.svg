@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- schwarzer Hintergrund -->
+  <rect width="32" height="32" rx="6" fill="#000"/>
+  <!-- Taschenlampe (🔦 – passend zum Admin-Logo) in weiß -->
+  <g transform="translate(6,5) scale(0.85)" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Körper der Taschenlampe -->
+    <rect x="6" y="9" width="6" height="10" rx="1.5"/>
+    <!-- Lichtkegel -->
+    <path d="M12 11 L20 7 L20 17 L12 13 Z" fill="#fff" stroke="none"/>
+    <!-- Licht-Strahlen -->
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="20.5" y1="9"  x2="22" y2="8"/>
+    <line x1="20.5" y1="15" x2="22" y2="16"/>
+    <!-- Knopf -->
+    <circle cx="8" cy="8.5" r="1" fill="#fff" stroke="none"/>
+  </g>
+</svg>
