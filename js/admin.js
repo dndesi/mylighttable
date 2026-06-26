@@ -428,9 +428,9 @@ async function loadDownloadCounts() {
   await Promise.allSettled([...els].map(async el => {
     const fileId = el.dataset.fileid;
     try {
-      const res  = await fetch(`https://api.countapi.xyz/get/dndesi-mylighttable/${fileId}`);
+      const res  = await fetch(`https://api.counterapi.dev/v1/dndesi-mylighttable/${fileId}`);
       const data = await res.json();
-      const n    = data.value || 0;
+      const n    = data.count || 0;
       if (n > 0) {
         el.textContent = `↓ ${n}`;
         el.title = `${n}× heruntergeladen`;

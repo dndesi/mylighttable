@@ -326,7 +326,7 @@ async function downloadSelected() {
 const COUNT_NS = 'dndesi-mylighttable';
 
 function trackDownloadHit(fileId) {
-  fetch(`https://api.countapi.xyz/hit/${COUNT_NS}/${fileId}`).catch(() => {});
+  fetch(`https://api.counterapi.dev/v1/${COUNT_NS}/${fileId}/up`).catch(() => {});
 }
 
 function trackDownload(fileId, fileName, dlUrl) {
