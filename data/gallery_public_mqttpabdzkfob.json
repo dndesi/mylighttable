@@ -1,9 +1,34 @@
 {
   "galleryName": "Rewe-Lauf 26",
-  "description": "HAllo",
+  "description": "",
   "expiry": "2026-07-30",
   "heroFileId": "1BY_Zm7-PR8QDBXzNZ8EDhHYWZEjXyEoo",
   "files": [
+    {
+      "id": "17CuZ0O4xdXcPl9EPC0AjtJ879e2gEMP-",
+      "name": "1000131952.mp4",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "19T9SU-yLJfB6KwxGL3lG56gcglWP9KZC",
+      "name": "1000131953.mp4",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "1r91Kml0x3fiTRMrSf-4vgxJIoi_pN1vm",
+      "name": "1000131957.mp4",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "1TdSk_Zzd3DBfVQiiwt4JnIoBubHo0z9Q",
+      "name": "1000131963.mp4",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "1DQdFgZKlnIfJsvDRdGgvPPni5HiVp5gx",
+      "name": "1000131988.mp4",
+      "mimeType": "video/mp4"
+    },
     {
       "id": "1ZxXIubu_qiseQsD6OqdiGD43_bB56oIN",
       "name": "1000131996.mp4",
@@ -198,12 +223,7 @@
       "id": "1KEUmsZX3iHV3Wt4ThKGNPTa2TIomnQA4",
       "name": "20260617_183917.jpg",
       "mimeType": "image/jpeg"
-    },
-    {
-      "id": "1B-8TI_pc0NN0apHvSIogPOvBq1O38Ezc",
-      "name": "20260617_183916.jpg",
-      "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-06-26T00:07:51.752Z"
+  "updatedAt": "2026-06-26T00:30:15.258Z"
 }

@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.3 – makeFilePublic für alle Dateien beim Sync
+// v2.4 – setHero schreibt nicht mehr direkt zu GitHub (Race-Fix)
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -384,9 +384,8 @@ async function deleteFile(fileId, fileName) {
 async function setHero(fileId) {
   if (!state.current) return;
   state.current.heroFileId = fileId;
-  await syncCurrentGalleryPublic();
   renderMediaGrid();
-  showDetailStatus('Hero-Bild gesetzt ✓', 'success');
+  showDetailStatus('Hero-Bild ausgewählt — bitte auf Speichern klicken.', 'info');
 }
 
 // ─── Public JSON der aktuellen Galerie synchronisieren ───────────────────────
