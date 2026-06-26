@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v2.6 – Lightbox-Pfeile, ausgewählte Downloads
+// v2.7 – Download-Tracking via CountAPI
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/master/data';
@@ -19,6 +19,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('lightbox-next').addEventListener('click', () => moveLightbox(1));
   document.getElementById('btn-download-all').addEventListener('click', downloadAll);
   document.getElementById('btn-download-selected').addEventListener('click', downloadSelected);
+  document.getElementById('lightbox-download').addEventListener('click', () => {
+    const file = galleryMeta?.files?.[currentLightboxIndex];
+    if (file) trackDownloadHit(file.id);
+  });
 
   // Tastatur-Navigation für Lightbox
   document.addEventListener('keydown', e => {
@@ -155,7 +159,7 @@ function renderGrid() {
           }
         </div>
         <div class="gallery-card-footer">
-          <a href="${dlUrl}" download="${file.name}" class="btn-download">↓ Download</a>
+          <button class="btn-download" onclick="trackDownload('${file.id}','${file.name}','${dlUrl}')">↓ Download</button>
         </div>
       </div>`;
   }).join('');
@@ -186,6 +190,7 @@ async function downloadAll() {
       const res  = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
       const blob = await res.blob();
       zip.file(file.name, blob);
+      trackDownloadHit(file.id);
     } catch {
       // einzelne fehlerhafte Datei überspringen
     }
@@ -291,6 +296,7 @@ async function downloadSelected() {
       const res  = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
       const blob = await res.blob();
       zip.file(file.name, blob);
+      trackDownloadHit(file.id);
     } catch { /* überspringen */ }
     done++;
   }
@@ -313,6 +319,24 @@ async function downloadSelected() {
   bar.style.display = 'none';
   btn.disabled = false;
   updateSelectedCount();
+}
+
+// ─── Download-Tracking ───────────────────────────────────────────────────────
+
+const COUNT_NS = 'dndesi-mylighttable';
+
+function trackDownloadHit(fileId) {
+  fetch(`https://api.countapi.xyz/hit/${COUNT_NS}/${fileId}`).catch(() => {});
+}
+
+function trackDownload(fileId, fileName, dlUrl) {
+  trackDownloadHit(fileId);
+  const a = document.createElement('a');
+  a.href = dlUrl;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => document.body.removeChild(a), 100);
 }
 
 // ─── UI Helpers ───────────────────────────────────────────────────────────────

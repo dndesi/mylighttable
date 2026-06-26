@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.4 – setHero schreibt nicht mehr direkt zu GitHub (Race-Fix)
+// v2.5 – Download-Zähler im Media-Grid
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -110,6 +110,7 @@ async function openGallery(id) {
       state.files = await Drive.listFiles(state.current.folderId);
     }
     renderMediaGrid();
+    loadDownloadCounts();
     showDetailStatus('', '');
     document.getElementById('detail-upload-section').style.display = 'block';
   } catch (e) {
@@ -420,6 +421,24 @@ async function syncCurrentGalleryPublic() {
   await Drive.saveGalleriesIndex({ galleries: state.galleries });
 }
 
+// ─── Download-Zähler laden ───────────────────────────────────────────────────
+
+async function loadDownloadCounts() {
+  const els = document.querySelectorAll('.dl-count[data-fileid]');
+  await Promise.allSettled([...els].map(async el => {
+    const fileId = el.dataset.fileid;
+    try {
+      const res  = await fetch(`https://api.countapi.xyz/get/dndesi-mylighttable/${fileId}`);
+      const data = await res.json();
+      const n    = data.value || 0;
+      if (n > 0) {
+        el.textContent = `↓ ${n}`;
+        el.title = `${n}× heruntergeladen`;
+      }
+    } catch { /* kein Zähler vorhanden */ }
+  }));
+}
+
 // ─── Render: Detail-Formular ──────────────────────────────────────────────────
 
 function renderDetailForm(g) {
@@ -457,6 +476,7 @@ function renderMediaGrid() {
             ? `<img src="${thumb}" alt="${file.name}" loading="lazy">`
             : `<div class="media-icon">${isVideo ? '▶' : '📄'}</div>`}
           ${isHero ? '<span class="hero-badge">Hero</span>' : ''}
+          <span class="dl-count" data-fileid="${file.id}"></span>
         </div>
         <div class="media-info">
           <span class="media-name" title="${file.name}">${file.name}</span>

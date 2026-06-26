@@ -1,14 +1,9 @@
 {
-  "galleryName": "Rewe-Lauf 26",
+  "galleryName": "Rewe-Lauf 2026",
   "description": "",
   "expiry": "2026-07-30",
   "heroFileId": "1BY_Zm7-PR8QDBXzNZ8EDhHYWZEjXyEoo",
   "files": [
-    {
-      "id": "17CuZ0O4xdXcPl9EPC0AjtJ879e2gEMP-",
-      "name": "1000131952.mp4",
-      "mimeType": "video/mp4"
-    },
     {
       "id": "19T9SU-yLJfB6KwxGL3lG56gcglWP9KZC",
       "name": "1000131953.mp4",
@@ -225,5 +220,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-06-26T00:30:15.258Z"
+  "updatedAt": "2026-06-26T08:54:09.223Z"
 }
