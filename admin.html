@@ -7,12 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
-  <link rel="stylesheet" href="css/admin.css?v=2.1">
+  <link rel="stylesheet" href="css/admin.css?v=2.2">
 </head>
 <body>
 
   <!-- ═══ LOGIN ═══════════════════════════════════════════════════════════ -->
   <div id="view-login">
+    <a href="index.html" style="position:fixed;top:16px;right:16px" class="btn-logout">↗ Frontend</a>
     <h1 class="admin-site-title">MyLighttable</h1>
     <div class="login-card">
       <p>Melde dich mit deinem Google-Account an.</p>
@@ -25,6 +26,7 @@
     <header class="admin-header">
       <div class="logo">🔦 MyLighttable <span>Admin</span></div>
       <div style="display:flex;gap:10px;align-items:center">
+        <a href="index.html" class="btn-logout" title="Frontend öffnen">↗ Frontend</a>
         <button id="btn-new-gallery" class="btn btn-primary btn-sm">+ Neue Galerie</button>
         <button id="btn-logout" class="btn-logout" onclick="Auth.logout()">Abmelden</button>
       </div>
@@ -60,7 +62,10 @@
         <button id="btn-back" class="btn-back">← Zurück</button>
         <span id="detail-title" class="logo">Neue Galerie</span>
       </div>
-      <button class="btn-logout" onclick="Auth.logout()">Abmelden</button>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="index.html" class="btn-logout" title="Frontend öffnen">↗ Frontend</a>
+        <button class="btn-logout" onclick="Auth.logout()">Abmelden</button>
+      </div>
     </header>
     <main class="admin-content">
       <div id="detail-status" class="status-bar"></div>
