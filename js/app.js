@@ -323,10 +323,10 @@ async function downloadSelected() {
 
 // ─── Download-Tracking ───────────────────────────────────────────────────────
 
-const COUNT_NS = 'dndesi-mylighttable';
+const COUNT_BASE = 'https://mylighttable-counter.d-noetzoldt.workers.dev';
 
 function trackDownloadHit(fileId) {
-  fetch(`https://api.counterapi.dev/v1/${COUNT_NS}/${fileId}/up`).catch(() => {});
+  fetch(`${COUNT_BASE}/hit/${fileId}`).catch(() => {});
 }
 
 function trackDownload(fileId, fileName, dlUrl) {
