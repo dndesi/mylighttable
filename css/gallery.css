@@ -1,5 +1,26 @@
 /* gallery.css – Frontend Galerie Styles */
-/* v2.2 – PIN-View Fullscreen-Background, Serif-Titel */
+/* v2.4 – Lightbox-Pfeile, Checkboxen, Download-Selected */
+
+/* ─── Admin-Link ─────────────────────────────────────────────────────────── */
+
+#admin-link {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-decoration: none;
+  z-index: 100;
+  transition: opacity 0.2s;
+}
+#admin-link:hover { color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.6); }
 
 /* ─── PIN View ───────────────────────────────────────────────────────────── */
 
@@ -183,11 +204,40 @@
   display: inline-block;
 }
 
-/* Toolbar (Download-All) */
+/* Toolbar (Download-All + Download-Selected) */
 .gallery-toolbar {
   max-width: 1600px;
   margin: 0 auto;
   padding: 16px 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--accent);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* Grid */
@@ -216,12 +266,55 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  position: relative;
   transition: transform 0.15s, border-color 0.15s;
 }
 
 .gallery-card:hover {
   transform: translateY(-2px);
   border-color: #555;
+}
+
+/* Checkbox */
+.gallery-select-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.gallery-select-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gallery-select-box {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.45);
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 5px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.gallery-select-label input:checked + .gallery-select-box {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.gallery-select-label input:checked + .gallery-select-box::after {
+  content: '✓';
+  display: block;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 16px;
 }
 
 .gallery-thumb {
@@ -315,7 +408,30 @@
   z-index: 1000;
   align-items: center;
   justify-content: center;
+  gap: 16px;
   padding: 20px;
+}
+
+.lightbox-arrow {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.lightbox-arrow:hover {
+  background: rgba(255,255,255,0.22);
 }
 
 .lightbox-inner {

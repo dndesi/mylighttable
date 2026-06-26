@@ -7,9 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
-  <link rel="stylesheet" href="css/gallery.css?v=2.2">
+  <link rel="stylesheet" href="css/gallery.css?v=2.4">
 </head>
 <body>
+
+  <!-- ═══ Admin-Link ═══════════════════════════════════════════════════════ -->
+  <a href="admin.html" id="admin-link" title="Admin">⚙</a>
 
   <!-- ═══ PIN VIEW ════════════════════════════════════════════════════════ -->
   <div id="view-pin" style="display:none">
@@ -49,6 +52,9 @@
       <button id="btn-download-all" class="btn btn-primary" style="display:none">
         ↓ Alle herunterladen
       </button>
+      <button id="btn-download-selected" class="btn btn-secondary" style="display:none" disabled>
+        ↓ Ausgewählte
+      </button>
       <div id="download-progress" class="progress-bar" style="display:none;margin-top:10px">
         <div class="bar-track"><div class="bar-fill"></div></div>
         <div id="download-progress-text" class="progress-text"></div>
@@ -71,6 +77,7 @@
 
   <!-- ═══ LIGHTBOX ════════════════════════════════════════════════════════ -->
   <div id="lightbox-overlay" style="display:none">
+    <button id="lightbox-prev" class="lightbox-arrow" style="display:none">‹</button>
     <div class="lightbox-inner">
       <div id="lightbox-content"></div>
       <div class="lightbox-actions">
@@ -78,12 +85,13 @@
         <a id="lightbox-download" href="#" download class="btn btn-primary">↓ Download</a>
       </div>
     </div>
+    <button id="lightbox-next" class="lightbox-arrow" style="display:none">›</button>
   </div>
 
   <!-- JSZip für Bulk-Download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="js/config.js?v=2.1"></script>
-  <script src="js/app.js?v=2.4"></script>
+  <script src="js/app.js?v=2.6"></script>
 
 </body>
 </html>
