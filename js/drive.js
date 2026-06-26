@@ -221,8 +221,7 @@ const Drive = (() => {
   // ─── URL helpers ─────────────────────────────────────────────────────────────
 
   function getThumbnailUrl(fileId) {
-    // API-URL mit Key — funktioniert zuverlässig für öffentliche Dateien ohne Auth-Cookies
-    return `${BASE_URL}/files/${fileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`;
+    return `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`;
   }
 
   function getDownloadUrl(fileId) {

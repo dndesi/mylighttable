@@ -122,7 +122,7 @@ function renderGrid() {
   grid.innerHTML = files.map((file, index) => {
     const isImage   = file.mimeType?.startsWith('image/');
     const isVideo   = file.mimeType?.startsWith('video/');
-    const thumbUrl  = isImage ? `${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}` : null;
+    const thumbUrl  = isImage ? `https://drive.google.com/thumbnail?id=${file.id}&sz=w400` : null;
     const dlUrl     = `https://drive.google.com/uc?export=download&id=${file.id}`;
 
     return `
@@ -202,7 +202,9 @@ function openLightbox(index) {
   if (!file) return;
   const isImage  = file.mimeType?.startsWith('image/');
   const isVideo  = file.mimeType?.startsWith('video/');
-  const mediaUrl = `${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`;
+  const mediaUrl = isImage
+    ? `https://drive.google.com/thumbnail?id=${file.id}&sz=w1600`
+    : `${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`;
   const dlUrl    = `https://drive.google.com/uc?export=download&id=${file.id}`;
 
   const content = document.getElementById('lightbox-content');
