@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.5 – Download-Zähler im Media-Grid
+// v2.6 – Hero-Vorschau in Galerie-Liste
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -72,21 +72,28 @@ function renderGalleryList() {
     const statusClass = expired ? 'expired' : 'active';
     const statusLabel = expired ? 'Abgelaufen' : 'Aktiv';
 
+    const heroThumb = g.heroFileId
+      ? `<img src="${Drive.getThumbnailUrl(g.heroFileId)}" alt="" loading="lazy">`
+      : `<span class="glc-hero-placeholder">🖼</span>`;
+
     return `
       <div class="gallery-list-card">
-        <div class="glc-header">
-          <div>
-            <span class="glc-name">${g.name}</span>
-            <span class="status-badge ${statusClass}">${statusLabel}</span>
+        <div class="glc-hero">${heroThumb}</div>
+        <div class="glc-body">
+          <div class="glc-header">
+            <div>
+              <span class="glc-name">${g.name}</span>
+              <span class="status-badge ${statusClass}">${statusLabel}</span>
+            </div>
+            <div class="glc-meta">
+              PIN: <strong>${g.pin}</strong> · ${g.fileCount || 0} Medien · ${expiryText}
+            </div>
           </div>
-          <div class="glc-meta">
-            PIN: <strong>${g.pin}</strong> · ${g.fileCount || 0} Medien · ${expiryText}
+          <div class="glc-actions">
+            <button class="btn btn-secondary btn-sm" onclick="openGallery('${g.id}')">Bearbeiten</button>
+            <button class="btn btn-secondary btn-sm" onclick="copyShareMessage('${g.id}')">🔗 Link & PIN</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteGallery('${g.id}')">Löschen</button>
           </div>
-        </div>
-        <div class="glc-actions">
-          <button class="btn btn-secondary btn-sm" onclick="openGallery('${g.id}')">Bearbeiten</button>
-          <button class="btn btn-secondary btn-sm" onclick="copyShareMessage('${g.id}')">🔗 Link & PIN</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteGallery('${g.id}')">Löschen</button>
         </div>
       </div>
     `;

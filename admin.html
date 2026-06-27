@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MyLighttable – Admin</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
-  <link rel="stylesheet" href="css/admin.css?v=2.3">
+  <link rel="stylesheet" href="css/admin.css?v=2.4">
 </head>
 <body>
 
   <!-- ═══ LOGIN ═══════════════════════════════════════════════════════════ -->
   <div id="view-login">
-    <a href="index.html" style="position:fixed;top:16px;right:16px" class="btn-logout">↗ Frontend</a>
+    <a href="index.html" style="position:fixed;top:16px;right:16px" class="btn-frontend">Frontend</a>
     <h1 class="admin-site-title">MyLighttable</h1>
     <div class="login-card">
       <p>Melde dich mit deinem Google-Account an.</p>
@@ -27,8 +30,8 @@
     <header class="admin-header">
       <div class="logo">🔦 MyLighttable <span>Admin</span></div>
       <div style="display:flex;gap:10px;align-items:center">
-        <a href="index.html" class="btn-logout" title="Frontend öffnen">↗ Frontend</a>
-        <button id="btn-new-gallery" class="btn btn-primary btn-sm">+ Neue Galerie</button>
+        <a href="index.html" class="btn-frontend" title="Frontend öffnen">Frontend</a>
+        <button id="btn-new-gallery" class="btn btn-primary btn-sm">+Galerie</button>
         <button id="btn-logout" class="btn-logout" onclick="Auth.logout()">Abmelden</button>
       </div>
     </header>
@@ -64,7 +67,7 @@
         <span id="detail-title" class="logo">Neue Galerie</span>
       </div>
       <div style="display:flex;gap:10px;align-items:center">
-        <a href="index.html" class="btn-logout" title="Frontend öffnen">↗ Frontend</a>
+        <a href="index.html" class="btn-frontend" title="Frontend öffnen">Frontend</a>
         <button class="btn-logout" onclick="Auth.logout()">Abmelden</button>
       </div>
     </header>
@@ -143,6 +146,6 @@
   <script src="js/auth.js?v=2.0"></script>
   <script src="js/drive.js?v=2.2"></script>
   <script src="js/github.js?v=1.3"></script>
-  <script src="js/admin.js?v=2.4"></script>
+  <script src="js/admin.js?v=2.6"></script>
 </body>
 </html>

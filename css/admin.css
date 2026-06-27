@@ -1,5 +1,5 @@
 /* admin.css – Admin Dashboard Styles */
-/* v2.1 – Glassmorphismus + Himmel-Hintergrund */
+/* v2.4 – Button-Korrekturen + Hero-Vorschau in Galerie-Liste */
 
 /* ─── Body Background ────────────────────────────────────────────────────── */
 
@@ -329,20 +329,38 @@ body {
   border-color: var(--red);
 }
 
-/* ─── Logout Button ──────────────────────────────────────────────────────── */
+/* ─── Frontend Button ────────────────────────────────────────────────────── */
 
-.btn-logout {
-  background: transparent;
-  color: var(--accent2);
+.btn-frontend {
+  background: #7c5cbf;
+  color: #fff;
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--radius);
-  border: 1px solid var(--border);
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-frontend:hover {
+  background: #6a4dab;
+  color: #fff;
+}
+
+/* ─── Logout Button ──────────────────────────────────────────────────────── */
+
+.btn-logout {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .btn-logout:hover {
-  color: var(--accent);
-  background: var(--surface2);
+  background: rgba(255,255,255,0.2);
+  color: #fff;
 }
 
 /* ─── Gallery List ───────────────────────────────────────────────────────── */
@@ -357,13 +375,60 @@ body {
 .gallery-list-card {
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 10px;
-  padding: 18px 20px;
   margin-bottom: 12px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+/* Hero-Thumbnail links in der Galeriekarte */
+.glc-hero {
+  width: 90px;
+  min-width: 90px;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.glc-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.glc-hero-placeholder {
+  font-size: 22px;
+  opacity: 0.3;
+}
+
+/* Inhalt rechts neben dem Hero */
+.glc-body {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Löschen-Button in der Liste: weiß statt rot */
+.gallery-list-card .btn-danger {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+.gallery-list-card .btn-danger:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
 }
 
 .glc-header {
@@ -440,12 +505,17 @@ body {
     gap: 8px;
   }
 
-  /* Galerie-Übersicht: untereinander statt nebeneinander */
-  .gallery-list-card {
+  /* Galerie-Übersicht: Hero schmal, Body untereinander */
+  .glc-hero {
+    width: 70px;
+    min-width: 70px;
+  }
+
+  .glc-body {
+    padding: 14px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
+    gap: 10px;
   }
 
   .glc-actions {
