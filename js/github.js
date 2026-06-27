@@ -1,9 +1,9 @@
 // github.js – GitHub API Wrapper
-// v1.3 – Retry bei 409 + 422, mit kurzem Delay
+// v1.4 – Daten auf separaten 'data'-Branch
 
 const GitHub = (() => {
   const REPO   = 'dndesi/mylighttable';
-  const BRANCH = 'master';
+  const BRANCH = 'data';
   const BASE   = `https://api.github.com/repos/${REPO}/contents`;
 
   function getToken() { return localStorage.getItem('github_pat') || null; }

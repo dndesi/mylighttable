@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.6 – Hero-Vorschau in Galerie-Liste
+// v2.7 – Daten auf separaten 'data'-Branch
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -186,7 +186,7 @@ async function saveGallery() {
 
     // GitHub-Sync (Frontend liest von hier)
     try {
-      await GitHub.saveFile(`data/gallery_public_${id}.json`, publicData);
+      await GitHub.saveFile(`gallery_public_${id}.json`, publicData);
     } catch (e) {
       showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
     }
@@ -240,7 +240,7 @@ async function refreshPinIndex() {
 
   // GitHub (Frontend liest von hier)
   try {
-    await GitHub.saveFile('data/pin_index.json', pinObj);
+    await GitHub.saveFile('pin_index.json', pinObj);
   } catch (e) {
     showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
   }
@@ -283,7 +283,7 @@ async function deleteGallery(id) {
   try {
     if (g.folderId) await Drive.deleteFolder(g.folderId).catch(() => {});
     if (g.publicFileId) await Drive.deleteFile(g.publicFileId).catch(() => {});
-    await GitHub.deleteFile(`data/gallery_public_${id}.json`).catch(() => {});
+    await GitHub.deleteFile(`gallery_public_${id}.json`).catch(() => {});
     state.galleries = state.galleries.filter(x => x.id !== id);
     await Drive.saveGalleriesIndex({ galleries: state.galleries });
     await refreshPinIndex();
@@ -417,7 +417,7 @@ async function syncCurrentGalleryPublic() {
 
   // GitHub (Frontend liest von hier)
   try {
-    await GitHub.saveFile(`data/gallery_public_${state.current.id}.json`, publicData);
+    await GitHub.saveFile(`gallery_public_${state.current.id}.json`, publicData);
   } catch (e) {
     console.warn('GitHub sync:', e.message);
   }

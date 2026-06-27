@@ -1,5 +1,5 @@
 /* gallery.css – Frontend Galerie Styles */
-/* v2.5 – Site-Header + Galerietitel linksbündig */
+/* v2.6 – Lightbox-Pfeile absolut positioniert */
 
 /* ─── Site Header ────────────────────────────────────────────────────────── */
 
@@ -450,14 +450,16 @@
   z-index: 1000;
   align-items: center;
   justify-content: center;
-  gap: 16px;
   padding: 20px;
 }
 
 .lightbox-arrow {
-  flex-shrink: 0;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 50%;
   color: #fff;
   font-size: 28px;
@@ -472,8 +474,11 @@
   line-height: 1;
 }
 
+#lightbox-prev { left: 12px; }
+#lightbox-next { right: 12px; }
+
 .lightbox-arrow:hover {
-  background: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.28);
 }
 
 .lightbox-inner {
