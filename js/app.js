@@ -2,7 +2,7 @@
 // v2.8 – Daten vom 'data'-Branch, Lightbox-Pfeile fix
 
 const API      = 'https://www.googleapis.com/drive/v3';
-const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data/data';
+const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
 let pinIndex          = null;   // { hash: publicFileId }
 let galleryMeta       = null;   // aktuelle Galerie-Daten
 let currentLightboxIndex = -1;  // aktiver Index in der Lightbox
