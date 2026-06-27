@@ -2,8 +2,13 @@
   "galleryName": "Fensteraufbereitung-Doku",
   "description": "",
   "expiry": "2026-07-30",
-  "heroFileId": "17CPbGzP4pmftxcNk4Tq7vfF8b4-1PNnX",
+  "heroFileId": "1ngtKZ5TpHUY3UTOwstVh_VWSQjroNxj1",
   "files": [
+    {
+      "id": "1XWVpfymYhGJYqZvXyAcP0cC_a5cNFmyl",
+      "name": "1000133506.jpg",
+      "mimeType": "image/jpeg"
+    },
     {
       "id": "1g-czK-zUSHCpeMVsomJ84ysYiZgyjXOc",
       "name": "_MG_9042.jpg",
@@ -120,5 +125,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-06-26T00:48:40.600Z"
+  "updatedAt": "2026-06-27T00:28:21.211Z"
 }
