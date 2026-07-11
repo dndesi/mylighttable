@@ -2,8 +2,18 @@
   "galleryName": "Samba Festival Coburg 2026",
   "description": "",
   "expiry": null,
-  "heroFileId": null,
+  "heroFileId": "1uQJQAFY9t5D_bOPbj637eW0K8UvGQVzb",
   "files": [
+    {
+      "id": "1dHzuhrYKudvfvHo-428QsM4tsyKq0qCP",
+      "name": "1000135643.mp4",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "1uA89iB5_3Iz3M5zmkN4GeZHsmd72AkWl",
+      "name": "1000135924.mp4",
+      "mimeType": "video/mp4"
+    },
     {
       "id": "1O0yuV29BFbTLzXim08kyBg4Xgroxy7Ew",
       "name": "1000135549.jpg",
@@ -145,5 +155,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-07-11T08:02:11.778Z"
+  "updatedAt": "2026-07-11T08:13:12.598Z"
 }
