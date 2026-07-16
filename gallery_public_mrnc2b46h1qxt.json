@@ -3,6 +3,77 @@
   "description": "Eigenbau 2022",
   "expiry": null,
   "heroFileId": null,
-  "files": [],
-  "updatedAt": "2026-07-16T09:55:18.342Z"
+  "files": [
+    {
+      "id": "19TzV7V4TxznDxfMz_-wX7h1GzOLukUHC",
+      "name": "1000138619.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1aysRlM-AVJCyApp_JdLDrAZP5ua6-yqg",
+      "name": "1000138632.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1qnIVZQXnNaDIMv6yRD_C2YOnpRCMwN6o",
+      "name": "1000138631.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Zwg7_my10UmPW8Hlz5T3U0SkuKMkMzHh",
+      "name": "1000138630.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1PM8z9qVPIE4MrSsyuL6g8o0-PG7t2Xij",
+      "name": "1000138629.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1uJ5Rl9MTGFHB_nO0nZ5waHhEEdezq2dV",
+      "name": "1000138628.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "11xycpUElBUMdCbIkAx0FvMPfG1LPMe47",
+      "name": "1000138627.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1suKVDvKHrSpVGwLWCgPa5nuqjwpoAgXT",
+      "name": "1000138626.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1C1zZGb4gM38l_ooNdW3msEz0RncCP58i",
+      "name": "1000138625.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1IBRcpvXTKpGNv-MRW1zLW9A5qqTqNPcI",
+      "name": "1000138622.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1M_PytgM5qFJbqO0I00HdEcrawVZroBYx",
+      "name": "1000138623.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1dEBYZk6zO_4MwDT7KlEU6ca0C7abU-Bl",
+      "name": "1000138624.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1xXY2k_CM2sDMho0Ff3aUxLXu8yPZZeAn",
+      "name": "1000138621.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1BRQ15SVfCZiliNFLlj2UkA3Yj3lQciZ_",
+      "name": "1000138620.jpg",
+      "mimeType": "image/jpeg"
+    }
+  ],
+  "updatedAt": "2026-07-16T09:57:09.260Z"
 }
