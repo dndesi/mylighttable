@@ -2,7 +2,7 @@
   "galleryName": "Liebesurlaub",
   "description": "",
   "expiry": "2026-08-09",
-  "heroFileId": null,
+  "heroFileId": "19rOiI5rJGGBCnBtErDF1vUr1CTy1dCKd",
   "files": [
     {
       "id": "1dtBjw0ul_zu1kMf68Pb31c3HDVJBLp7F",
@@ -205,5 +205,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-07-28T20:04:07.756Z"
+  "updatedAt": "2026-07-28T20:05:36.556Z"
 }
