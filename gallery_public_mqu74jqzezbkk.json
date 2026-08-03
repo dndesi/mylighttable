@@ -1,9 +1,39 @@
 {
   "galleryName": "Fensteraufbereitung-Doku",
   "description": "",
-  "expiry": "2026-07-30",
+  "expiry": null,
   "heroFileId": "1ngtKZ5TpHUY3UTOwstVh_VWSQjroNxj1",
   "files": [
+    {
+      "id": "17SjxzITnWIyJT7zSjsR-Je74-O2hY6t-",
+      "name": "1000143121.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1K0zKyLONyl4TFrANkua5xRk4B3-l4GDT",
+      "name": "1000143123.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1CzGLprPhy7zp6UpXcmwih24aM9cwDR4I",
+      "name": "1000143124.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Y5XQtymZaVOtu84WUS8PbujBttQM0-iO",
+      "name": "1000143126.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "19Y2im0Kc2_mrnhuC7UwsATOsXcjywxWs",
+      "name": "1000143135.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "15mANAFq-kDlhCu_9NPY_uKOHHAjOn-WU",
+      "name": "1000143137.jpg",
+      "mimeType": "image/jpeg"
+    },
     {
       "id": "1XWVpfymYhGJYqZvXyAcP0cC_a5cNFmyl",
       "name": "1000133506.jpg",
@@ -65,11 +95,6 @@
       "mimeType": "image/jpeg"
     },
     {
-      "id": "1pTtvGmtGAC0s7xx-BreVy0BoB1RPsvh-",
-      "name": "_MG_9088.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
       "id": "1s0bWUlOm096iaXJ6xtoCq9cAwPtompQl",
       "name": "_MG_9097.jpg",
       "mimeType": "image/jpeg"
@@ -120,5 +145,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-08-03T09:08:27.566Z"
+  "updatedAt": "2026-08-03T09:25:51.869Z"
 }
