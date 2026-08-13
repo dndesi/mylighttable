@@ -1,5 +1,5 @@
 {
-  "galleryName": "Etiketten fertig",
+  "galleryName": "Etiketten nacher",
   "description": "",
   "expiry": null,
   "heroFileId": "1Ngn-On-rzGxjv-UQkz2rUY5JLK-QppOl",
@@ -105,11 +105,6 @@
       "mimeType": "image/jpeg"
     },
     {
-      "id": "15yxi0buIoGoHEYMoOoIK4maZ1urfQRho",
-      "name": "Etikett 3.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
       "id": "1_M25PDdnUeOqZ21ob6tmmMfe0Stw08Jf",
       "name": "Etikett  4.jpg",
       "mimeType": "image/jpeg"
@@ -125,5 +120,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-08-13T18:51:45.642Z"
+  "updatedAt": "2026-08-13T18:57:33.315Z"
 }
