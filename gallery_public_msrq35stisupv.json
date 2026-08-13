@@ -3,6 +3,132 @@
   "description": "",
   "expiry": null,
   "heroFileId": null,
-  "files": [],
-  "updatedAt": "2026-08-13T16:18:39.773Z"
+  "files": [
+    {
+      "id": "1LGy26xRmYqaAhGCzTwupt7iselEKoyH0",
+      "name": "1000145756.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1OfJ1kohk2pksTr88i5eXqZqgwmgjgTFs",
+      "name": "1000145758.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ni2lKO3Hpw4gq83l4Wlj2NctdWDzVmlM",
+      "name": "1000145759.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "17hqUrNLQ-IaWXNpwH2PlXxbd4nCO8AHe",
+      "name": "1000145770.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1HwlVzdf2ZzSNr0oSLz02jd3d4QXehDF4",
+      "name": "1000145771.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1aOfnlrk7um-2GvH3pnu0ZPnDrFwa1pLz",
+      "name": "1000145772.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1G1BjTrAGI8HP2disphANS6AUpjH6MMRS",
+      "name": "1000145773.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Wxqcv0ltdz0-VuKYa-uAFn1wfHcGojLG",
+      "name": "1000145775.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1odf7JF9crvaQyDBvQ4YUKpPWNcMOx6A9",
+      "name": "1000145776.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1JY-jBVynbRdYeN06s3dbYQQkfgewyncK",
+      "name": "1000145777.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Kw0TU_ZVGwjBsyi7FHP9VXXyj_6hN_0a",
+      "name": "1000145778.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1oOkfm2zUydS7-f1EcRefkdZbY0kaXn9k",
+      "name": "1000145779.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1XwZS5ZQzNzGl-cl5cuWo1OFf3g9Yg8i0",
+      "name": "1000145780.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1IMzOy_YbzBegHyRdKZj0ZeQ8TPAzF8mu",
+      "name": "1000145781.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1IKkH4RoqW_YdBH09L2pEeAkfZQe1_2qb",
+      "name": "1000145782.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1K9YNpNl61JIUPvpJkokyJcGeQjZtnrsk",
+      "name": "1000145783.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1cadUdQ9Rd4OgrJsQLV3IpF8mno8KYU8G",
+      "name": "1000145784.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1D57oCNldLkGHdB6TXZGjGl5DRkt-qFBV",
+      "name": "1000145785.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1wQpZF0FcxaxFpEpDc8gwGCGd88DXswZ_",
+      "name": "1000145786.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1C1P1p5L27cj76--uHAt3Nei2uKlVJ9bj",
+      "name": "1000145787.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1KyKSDxb_H04_OVxrzu4Wpf9tFhEayjzl",
+      "name": "1000145788.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "12HNt9LLMZO1mEiR86bJ0U7PcMBJIGmot",
+      "name": "1000145790.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1zDjZWVpbRlNgzUWh9i7_Oy3dSGemWcfd",
+      "name": "1000145791.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1j5NBeFvqAoCbUd3m-_I4yTWe4Qg8x06H",
+      "name": "1000145792.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1n81OLtdUq5dLFCc0DrRhPf7AsNdvymTw",
+      "name": "1000145793.jpg",
+      "mimeType": "image/jpeg"
+    }
+  ],
+  "updatedAt": "2026-08-13T16:21:31.999Z"
 }
