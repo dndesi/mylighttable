@@ -5,11 +5,6 @@
   "heroFileId": "1Ngn-On-rzGxjv-UQkz2rUY5JLK-QppOl",
   "files": [
     {
-      "id": "1-xYHx_Zes1k22RY9x7Uiz3xYcQXfZR0t",
-      "name": "Video Kittl 2.mov",
-      "mimeType": "video/quicktime"
-    },
-    {
       "id": "12RFCfgfJIgidHqjypXX9ynz0cWkCr_HI",
       "name": "Etikett 23.jpg",
       "mimeType": "image/jpeg"
@@ -120,5 +115,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-08-13T18:57:33.315Z"
+  "updatedAt": "2026-08-26T09:03:19.980Z"
 }
