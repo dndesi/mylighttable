@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.7 – Daten auf separaten 'data'-Branch
+// v2.8 – Daten auf separaten 'data'-Branch
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -518,7 +518,9 @@ function saveGithubToken() {
 
 function resetGithubToken() {
   GitHub.setToken(null);
-  checkGithubToken();
+  const bar = document.getElementById('github-token-bar');
+  if (bar) bar.style.display = 'block';
+  document.getElementById('input-github-token')?.focus();
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

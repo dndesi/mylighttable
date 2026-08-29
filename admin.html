@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
-  <link rel="stylesheet" href="css/admin.css?v=2.4">
+  <link rel="stylesheet" href="css/admin.css?v=2.5">
 </head>
 <body>
 
@@ -32,6 +32,7 @@
       <div style="display:flex;gap:10px;align-items:center">
         <a href="index.html" class="btn-frontend" title="Frontend öffnen">Frontend</a>
         <button id="btn-new-gallery" class="btn btn-primary btn-sm">+Galerie</button>
+        <button class="btn-logout" onclick="resetGithubToken()" title="GitHub Token ändern">🔑 Token</button>
         <button id="btn-logout" class="btn-logout" onclick="Auth.logout()">Abmelden</button>
       </div>
     </header>
@@ -146,6 +147,6 @@
   <script src="js/auth.js?v=2.0"></script>
   <script src="js/drive.js?v=2.2"></script>
   <script src="js/github.js?v=1.4"></script>
-  <script src="js/admin.js?v=2.7"></script>
+  <script src="js/admin.js?v=2.8"></script>
 </body>
 </html>
