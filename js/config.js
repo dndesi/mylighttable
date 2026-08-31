@@ -7,5 +7,5 @@ const CONFIG = {
   GOOGLE_API_KEY: 'AIzaSyBE4vkwb3nMh-we9_zbB7EqkfbDiM8iB0o',
   // Einmalig nach erster Galerie im Admin eintragen (wird im Admin angezeigt):
   PUBLIC_INDEX_FILE_ID: '1lFj4p_Lz9NTT72w6WTwEZyNS1ygJmH6X',
-  VERSION: '1.0',
+  VERSION: '1.1',
 };

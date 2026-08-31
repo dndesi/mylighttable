@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v3.2 – Versionsnummer im Header
+// v3.3 – Rate-limit Fix: 300ms Pause zwischen Drive-Downloads
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -212,6 +212,8 @@ async function downloadAll() {
       failed++;
     }
     done++;
+    // Kurze Pause damit Google Drive nicht rate-limitet
+    if (done < total && !signal.aborted) await new Promise(r => setTimeout(r, 300));
   }
 
   // Aufräumen
