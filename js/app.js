@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v3.1 – AbortController für Download, Abbrechen-Button, Fehleranzeige
+// v3.2 – Versionsnummer im Header
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -10,6 +10,9 @@ let currentLightboxIndex = -1;  // aktiver Index in der Lightbox
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 window.addEventListener('DOMContentLoaded', async () => {
+  const vEl = document.getElementById('app-version');
+  if (vEl && CONFIG?.VERSION) vEl.textContent = 'V ' + CONFIG.VERSION;
+
   document.getElementById('pin-form').addEventListener('submit', handlePinSubmit);
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.getElementById('lightbox-overlay').addEventListener('click', e => {
