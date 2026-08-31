@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v2.8 – Daten vom 'data'-Branch, Lightbox-Pfeile fix
+// v2.9 – Download-Fehler sichtbar machen statt leere ZIP
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -183,22 +183,33 @@ async function downloadAll() {
   const total = files.length;
   let done    = 0;
 
+  let failed = 0;
   for (const file of files) {
     try {
       txt.textContent = `${file.name} (${done + 1}/${total})`;
       bar.querySelector('.bar-fill').style.width = Math.round(done / total * 100) + '%';
       const res  = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
       zip.file(file.name, blob);
       trackDownloadHit(file.id);
     } catch {
-      // einzelne fehlerhafte Datei überspringen
+      failed++;
     }
     done++;
   }
 
+  if (failed === total) {
+    bar.style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = '↓ Alle herunterladen';
+    showListStatus?.('Download fehlgeschlagen – bitte Seite neu laden und erneut versuchen.', 'error');
+    alert('Download fehlgeschlagen. Bitte die Seite neu laden und erneut versuchen.');
+    return;
+  }
+
   bar.querySelector('.bar-fill').style.width = '100%';
-  txt.textContent = 'ZIP wird erstellt…';
+  txt.textContent = failed > 0 ? `ZIP wird erstellt… (${failed} Datei(en) übersprungen)` : 'ZIP wird erstellt…';
 
   const zipBlob = await zip.generateAsync({ type: 'blob' }, meta => {
     bar.querySelector('.bar-fill').style.width = meta.percent.toFixed(0) + '%';
