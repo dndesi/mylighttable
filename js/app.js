@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v3.0 – Alle auswählen / Alle abwählen, Download-Fehler sichtbar
+// v3.1 – AbortController für Download, Abbrechen-Button, Fehleranzeige
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -169,55 +169,73 @@ function renderGrid() {
 
 // ─── Alle herunterladen (ZIP) ─────────────────────────────────────────────────
 
+let _dlController = null; // verhindert parallele Downloads
+
 async function downloadAll() {
   const files = galleryMeta.files || [];
   if (!files.length) return;
 
-  const btn = document.getElementById('btn-download-all');
-  const bar = document.getElementById('download-progress');
-  const txt = document.getElementById('download-progress-text');
+  // Laufenden Download abbrechen und neu starten
+  if (_dlController) { _dlController.abort(); _dlController = null; }
+  _dlController = new AbortController();
+  const signal = _dlController.signal;
+
+  const btn    = document.getElementById('btn-download-all');
+  const btnCan = document.getElementById('btn-cancel-download');
+  const bar    = document.getElementById('download-progress');
+  const txt    = document.getElementById('download-progress-text');
 
   btn.disabled = true;
   btn.textContent = 'Wird vorbereitet…';
+  if (btnCan) btnCan.style.display = 'inline-flex';
   bar.style.display = 'block';
 
   const zip   = new JSZip();
   const total = files.length;
-  let done    = 0;
+  let done = 0, failed = 0, aborted = false;
 
-  let failed = 0;
   for (const file of files) {
+    if (signal.aborted) { aborted = true; break; }
     try {
       txt.textContent = `${file.name} (${done + 1}/${total})`;
       bar.querySelector('.bar-fill').style.width = Math.round(done / total * 100) + '%';
-      const res  = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+      const res = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`, { signal });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
       zip.file(file.name, blob);
       trackDownloadHit(file.id);
-    } catch {
+    } catch (e) {
+      if (e.name === 'AbortError') { aborted = true; break; }
       failed++;
     }
     done++;
   }
 
+  // Aufräumen
+  if (btnCan) btnCan.style.display = 'none';
+  bar.style.display = 'none';
+  txt.textContent = '';
+  btn.disabled = false;
+  btn.textContent = '↓ Alle herunterladen';
+  _dlController = null;
+
+  if (aborted) return;
+
   if (failed === total) {
-    bar.style.display = 'none';
-    btn.disabled = false;
-    btn.textContent = '↓ Alle herunterladen';
-    showListStatus?.('Download fehlgeschlagen – bitte Seite neu laden und erneut versuchen.', 'error');
-    alert('Download fehlgeschlagen. Bitte die Seite neu laden und erneut versuchen.');
+    alert('Download fehlgeschlagen – bitte Seite neu laden und erneut versuchen.');
     return;
   }
 
-  bar.querySelector('.bar-fill').style.width = '100%';
-  txt.textContent = failed > 0 ? `ZIP wird erstellt… (${failed} Datei(en) übersprungen)` : 'ZIP wird erstellt…';
+  txt.textContent = 'ZIP wird erstellt…';
+  bar.style.display = 'block';
 
   const zipBlob = await zip.generateAsync({ type: 'blob' }, meta => {
     bar.querySelector('.bar-fill').style.width = meta.percent.toFixed(0) + '%';
   });
 
-  // Download auslösen
+  bar.style.display = 'none';
+  txt.textContent = '';
+
   const url = URL.createObjectURL(zipBlob);
   const a   = document.createElement('a');
   a.href = url;
@@ -226,10 +244,11 @@ async function downloadAll() {
   a.click();
   setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
 
-  bar.style.display = 'none';
-  txt.textContent = '';
-  btn.disabled = false;
-  btn.textContent = '↓ Alle herunterladen';
+  if (failed > 0) alert(`${failed} Datei(en) konnten nicht heruntergeladen werden.`);
+}
+
+function cancelDownload() {
+  if (_dlController) { _dlController.abort(); _dlController = null; }
 }
 
 // ─── Lightbox ─────────────────────────────────────────────────────────────────
