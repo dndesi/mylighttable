@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v2.9 – Download-Fehler sichtbar machen statt leere ZIP
+// v3.0 – Alle auswählen / Alle abwählen, Download-Fehler sichtbar
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -136,6 +136,8 @@ function renderGrid() {
 
   document.getElementById('btn-download-all').style.display = 'inline-flex';
   document.getElementById('btn-download-selected').style.display = 'inline-flex';
+  document.getElementById('btn-select-all').style.display = 'inline-flex';
+  document.getElementById('btn-deselect-all').style.display = 'inline-flex';
   updateSelectedCount();
 
   grid.innerHTML = files.map((file, index) => {
@@ -276,10 +278,28 @@ function closeLightbox() {
 // ─── Ausgewählte herunterladen ─────────────────────────────────────────────────
 
 function updateSelectedCount() {
+  const all     = document.querySelectorAll('.gallery-checkbox');
   const checked = document.querySelectorAll('.gallery-checkbox:checked').length;
-  const btn = document.getElementById('btn-download-selected');
-  btn.textContent = checked > 0 ? `↓ Ausgewählte (${checked})` : '↓ Ausgewählte';
-  btn.disabled = checked === 0;
+  const total   = all.length;
+
+  const btnSel    = document.getElementById('btn-download-selected');
+  const btnSelAll = document.getElementById('btn-select-all');
+  const btnDesel  = document.getElementById('btn-deselect-all');
+
+  btnSel.textContent = checked > 0 ? `↓ Ausgewählte (${checked})` : '↓ Ausgewählte';
+  btnSel.disabled    = checked === 0;
+  btnSelAll.disabled = checked === total;
+  btnDesel.disabled  = checked === 0;
+}
+
+function selectAll() {
+  document.querySelectorAll('.gallery-checkbox').forEach(cb => cb.checked = true);
+  updateSelectedCount();
+}
+
+function deselectAll() {
+  document.querySelectorAll('.gallery-checkbox').forEach(cb => cb.checked = false);
+  updateSelectedCount();
 }
 
 async function downloadSelected() {

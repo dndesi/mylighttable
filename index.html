@@ -67,6 +67,12 @@
       <button id="btn-download-selected" class="btn btn-secondary" style="display:none" disabled>
         ↓ Ausgewählte
       </button>
+      <button id="btn-select-all" class="btn btn-secondary" style="display:none" onclick="selectAll()">
+        Alle auswählen
+      </button>
+      <button id="btn-deselect-all" class="btn btn-secondary" style="display:none" disabled onclick="deselectAll()">
+        Alle abwählen
+      </button>
       <div id="download-progress" class="progress-bar" style="display:none;margin-top:10px">
         <div class="bar-track"><div class="bar-fill"></div></div>
         <div id="download-progress-text" class="progress-text"></div>
@@ -103,7 +109,7 @@
   <!-- JSZip für Bulk-Download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="js/config.js?v=2.1"></script>
-  <script src="js/app.js?v=2.9"></script>
+  <script src="js/app.js?v=3.0"></script>
 
 </body>
 </html>
