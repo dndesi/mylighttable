@@ -5,6 +5,101 @@
   "heroFileId": null,
   "files": [
     {
+      "id": "1AvfHkn6OJxg6-gTWF0Mw5vmtJenJTSNd",
+      "name": "fuhrpark brauerei DD-113836.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1DKxgt-IjXi_aAkJ_s_fuC7EQXSylePua",
+      "name": "fuhrpark brauerei DD-113717.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1orJlTiTv5PXP8jkqrjs3A5lWpJ0JmiWP",
+      "name": "fuhrpark brauerei DD-113558.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1lAp2ruXianzm7rPlAKOpow3TXK2lDkp4",
+      "name": "fuhrpark brauerei DD-113415.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Jq7KGC6Kzd0su12msUlBg6MRtwWucoMR",
+      "name": "fuhrpark brauerei DD-113350.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1GleZ4JfIwET6q5LReuqbg49h8ZPhFI8r",
+      "name": "fuhrpark brauerei DD-113333.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1LrqXqgOlUmZ87WvUtewfnc2rWoqynNby",
+      "name": "fuhrpark brauerei DD-113209.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ZL9daPamG114zEvlTXYdpDoqMeA8o6CJ",
+      "name": "fuhrpark brauerei DD-113052.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1g7GSfH-KulSbfBoC9tZ4bf2LlPNuUDFq",
+      "name": "fuhrpark brauerei DD-112926.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1H2VlmvLt92MJhNIIVfI16XiQmuzeNIQ6",
+      "name": "fuhrpark brauerei DD-112708.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1QL8Mem8v0Mo4JkoBOMXkslvnqiILW9oB",
+      "name": "weisser_hirsch-DD-9.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1MmT9s7pYU3bqk-1x49LEKzCkjVnnxXcY",
+      "name": "weisser_hirsch-DD-8.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1RYKfDRAN6UWGeW98zOz7xIyFiQUiH61j",
+      "name": "weisser_hirsch-DD-7.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1iBu0D5Gw1gvfXd0lQ6oOK4ymnzmr3ccV",
+      "name": "weisser_hirsch-DD-6.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "10RB0vMNJvfF5WdY9Da3i9a7RXbSvBczj",
+      "name": "weisser_hirsch-DD-5.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1gG9JxafDMxCUChm3osc9cTfcXJUpqGv5",
+      "name": "weisser_hirsch-DD-4.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1VYybzRSfnEYv7Dis8ypKLtCODVd5WYQO",
+      "name": "weisser_hirsch-DD-3.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1bp7V9XSa0Q2rXKDgJU0OCYROeYujTnmH",
+      "name": "weisser_hirsch-DD-2.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1xHFPkfAzDrcJ4lvX2Bddgo54jrB9Vp9R",
+      "name": "weisser_hirsch-DD-1.png",
+      "mimeType": "image/png"
+    },
+    {
       "id": "18_LPkkbqqlVCq92WI8ol-m2u3bCiXqLd",
       "name": "weisser_hirsch-9038.jpg",
       "mimeType": "image/jpeg"
@@ -140,5 +235,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:29:59.104Z"
+  "updatedAt": "2026-09-09T08:32:06.240Z"
 }
