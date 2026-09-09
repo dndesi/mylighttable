@@ -3,6 +3,32 @@
   "description": "aktuelle Referenzaufnahmen Dresden, Leipzig",
   "expiry": null,
   "heroFileId": null,
-  "files": [],
-  "updatedAt": "2026-09-09T08:10:04.213Z"
+  "files": [
+    {
+      "id": "1uMurA5sFREqF0s5pQT5h1GxG130wBG6G",
+      "name": "Fehmaner str-leipzig-5.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1PIWlSYTyQgSJ9RsQpdjwDXGbuf3sJStO",
+      "name": "Fehmaner str-leipzig-4.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "11-k2_s_1RgorCTKCyYuCY0CP71TwpwgO",
+      "name": "Fehmaner str-leipzig-3.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1bFLHx42H46_ofEYlKwEdEzglRKm8FOGd",
+      "name": "Fehmaner str-leipzig-2.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1f9EMuwXEyGUkEHnVJIMIWKePi9h_HxtP",
+      "name": "Fehmaner str-leipzig-1.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "updatedAt": "2026-09-09T08:14:21.626Z"
 }
