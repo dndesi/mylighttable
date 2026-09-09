@@ -5,6 +5,26 @@
   "heroFileId": null,
   "files": [
     {
+      "id": "13P4qrvG8v6DZpBRRDUPQjMcdPbQBvMNY",
+      "name": "Georg-Schumann-Str. 210 - leipzig-4.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1REn3Ap7TVoSjpV3IUhrTJo_NR1lBA5Zi",
+      "name": "Georg-Schumann-Str. 210 - leipzig-3.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1HG-ouOafbXb0M48dQvmkzmnjsJBPXRR-",
+      "name": "Georg-Schumann-Str. 210 - leipzig-2.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1gtanK1z1TG5W5Xm_g8-3rHsOb30D_FLa",
+      "name": "Georg-Schumann-Str. 210 - leipzig-1.png",
+      "mimeType": "image/png"
+    },
+    {
       "id": "1uMurA5sFREqF0s5pQT5h1GxG130wBG6G",
       "name": "Fehmaner str-leipzig-5.png",
       "mimeType": "image/png"
@@ -30,5 +50,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:14:21.626Z"
+  "updatedAt": "2026-09-09T08:20:53.211Z"
 }
