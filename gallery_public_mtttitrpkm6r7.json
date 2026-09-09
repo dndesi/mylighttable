@@ -5,6 +5,26 @@
   "heroFileId": null,
   "files": [
     {
+      "id": "1u6bNUb0hqYGJ1tTA33ZMdIkm5E3GIiWd",
+      "name": "Zschochersche Str. 73 - leipzig-4.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1ns1X-GDKOGyP5c1WMBwj2m1ZObiDMMPB",
+      "name": "Zschochersche Str. 73 - leipzig-3.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1xIR5WNI07FJAynYeQXljYVKpM0Z977hd",
+      "name": "Zschochersche Str. 73 - leipzig-2.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1N3wpPR3h5AzgMQiuINK7n-OJjofkMbWX",
+      "name": "Zschochersche Str. 73 - leipzig-1.png",
+      "mimeType": "image/png"
+    },
+    {
       "id": "1YgUhn8XKiF_V0CobrrbqYaxzKPDuLvX5",
       "name": "Merseburger Str. 49 - leipzig- leipzig -5.png",
       "mimeType": "image/png"
@@ -75,5 +95,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:22:50.038Z"
+  "updatedAt": "2026-09-09T08:24:44.106Z"
 }
