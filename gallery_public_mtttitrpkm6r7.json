@@ -1,8 +1,8 @@
 {
   "galleryName": "Aktuelle Referenzen Röwert",
-  "description": "aktuelle Referenzaufnahmen Dresden, Leipzig",
+  "description": "aktuelle Referenzfotos Dresden, Leipzig",
   "expiry": null,
-  "heroFileId": null,
+  "heroFileId": "1VYybzRSfnEYv7Dis8ypKLtCODVd5WYQO",
   "files": [
     {
       "id": "1AvfHkn6OJxg6-gTWF0Mw5vmtJenJTSNd",
@@ -235,5 +235,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:32:06.240Z"
+  "updatedAt": "2026-09-09T09:01:58.717Z"
 }
