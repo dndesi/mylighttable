@@ -5,6 +5,31 @@
   "heroFileId": null,
   "files": [
     {
+      "id": "1YgUhn8XKiF_V0CobrrbqYaxzKPDuLvX5",
+      "name": "Merseburger Str. 49 - leipzig- leipzig -5.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1mWLUX5SdfhPlcbmkm_ChYmALtCWJjjtR",
+      "name": "Merseburger Str. 49 - leipzig- leipzig -4.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1mbS8amO4pOGC_j65Rnx2Jt7cm1ojX7qT",
+      "name": "Merseburger Str. 49 - leipzig- leipzig -3.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1jCqpfMX58hAec7LVeT9q6Rsk6iJG6f4k",
+      "name": "Merseburger Str. 49 - leipzig- leipzig -2.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1fCxseQVPbENUVCb9YXLC5noHyqm5sLla",
+      "name": "Merseburger Str. 49 - leipzig- leipzig -1.png",
+      "mimeType": "image/png"
+    },
+    {
       "id": "13P4qrvG8v6DZpBRRDUPQjMcdPbQBvMNY",
       "name": "Georg-Schumann-Str. 210 - leipzig-4.png",
       "mimeType": "image/png"
@@ -50,5 +75,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:20:53.211Z"
+  "updatedAt": "2026-09-09T08:22:50.038Z"
 }
