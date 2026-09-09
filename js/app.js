@@ -164,6 +164,7 @@ function renderGrid() {
           }
         </div>
         <div class="gallery-card-footer">
+          <span class="gallery-file-name" title="${file.name}">${file.name}</span>
           <button class="btn-download" onclick="trackDownload('${file.id}','${file.name}','${dlUrl}')">↓ Download</button>
         </div>
       </div>`;
