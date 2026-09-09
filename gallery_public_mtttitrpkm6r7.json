@@ -5,6 +5,51 @@
   "heroFileId": null,
   "files": [
     {
+      "id": "18_LPkkbqqlVCq92WI8ol-m2u3bCiXqLd",
+      "name": "weisser_hirsch-9038.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1F5gHMp77gQXsJp4_T662gDczlGBZL6PI",
+      "name": "weisser_hirsch-9025.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1kiQe6Opl_Ablwx7OpzS6eVvd3bi9ZhJu",
+      "name": "weisser_hirsch-9015.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1QIGQCqpbTv7CcUJeddUTbhj9GVSUww3O",
+      "name": "weisser_hirsch-9013.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1xPkMi4NT8osnHmpNeVIosIn_MGoeF1qg",
+      "name": "weisser_hirsch-9009.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Hjv-lO4zUgN1vrW388atvWHpw86bQ_v2",
+      "name": "weisser_hirsch-9002.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1qz31qdL4ceypcrlECjSuVJhsCt6LW3vt",
+      "name": "weisser_hirsch-8997.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1SJIIcIrmvECXGDSA7XiCNVfpK7nHjAt-",
+      "name": "weisser_hirsch-8993.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1C832tPbYETJVSrwJanU8TLQPI7DpFL_W",
+      "name": "weisser_hirsch-8992.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
       "id": "1u6bNUb0hqYGJ1tTA33ZMdIkm5E3GIiWd",
       "name": "Zschochersche Str. 73 - leipzig-4.png",
       "mimeType": "image/png"
@@ -95,5 +140,5 @@
       "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-09-09T08:24:44.106Z"
+  "updatedAt": "2026-09-09T08:29:59.104Z"
 }
