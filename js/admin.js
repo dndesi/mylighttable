@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.8 – Daten auf separaten 'data'-Branch
+// v2.9 – Daten auf separaten 'data'-Branch
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -367,6 +367,50 @@ async function startUpload() {
   document.getElementById('upload-count').textContent = '';
   document.getElementById('btn-upload').disabled = false;
   showDetailStatus(`${total} Datei(en) hochgeladen ✓`, 'success');
+  showSaveReminder(total);
+}
+
+function showSaveReminder(count) {
+  const existing = document.getElementById('save-reminder-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'save-reminder-modal';
+  modal.innerHTML = `
+    <div style="
+      position:fixed; inset:0; background:rgba(0,0,0,0.6);
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; backdrop-filter:blur(4px);
+    ">
+      <div style="
+        background:#1e1e2e; border:1px solid rgba(255,255,255,0.15);
+        border-radius:16px; padding:32px 36px; max-width:380px; width:90%;
+        text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.5);
+      ">
+        <div style="font-size:40px;margin-bottom:16px">✅</div>
+        <h3 style="color:#fff;font-size:18px;margin:0 0 10px">${count} Datei(en) hochgeladen</h3>
+        <p style="color:rgba(255,255,255,0.65);font-size:14px;line-height:1.6;margin:0 0 24px">
+          Damit die Bilder im <strong style="color:#fff">Frontend sichtbar</strong> werden,<br>
+          bitte jetzt die Galerie speichern.
+        </p>
+        <button onclick="document.getElementById('save-reminder-modal').remove(); saveGallery();"
+          style="
+            background:#7c5cbf;color:#fff;border:none;border-radius:8px;
+            padding:12px 28px;font-size:15px;font-weight:600;cursor:pointer;
+            width:100%;margin-bottom:10px;
+          ">
+          Jetzt speichern
+        </button>
+        <button onclick="document.getElementById('save-reminder-modal').remove();"
+          style="
+            background:transparent;color:rgba(255,255,255,0.45);border:none;
+            font-size:13px;cursor:pointer;padding:4px;
+          ">
+          Später
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
 }
 
 // ─── Datei löschen ────────────────────────────────────────────────────────────
