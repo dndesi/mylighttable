@@ -14,12 +14,8 @@
     {
       "id": "1YkmLF9gyTUg5EOTnoqSihLxe8P11JqNE",
       "name": "IMG_1486.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
-      "id": "1Bsu7yF6BxH-EPnvluuh7fFA9dm8QFjeC",
-      "name": "IMG_1674.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "notiz": "Bauseitige Bestandsdokumentation - Hallenbild"
     },
     {
       "id": "179_WfiNj9tX4rZEyLqjq8vMVFgMklhyE",
@@ -197,5 +193,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-09-17T13:40:20.061Z"
+  "updatedAt": "2026-09-17T13:41:20.056Z"
 }
