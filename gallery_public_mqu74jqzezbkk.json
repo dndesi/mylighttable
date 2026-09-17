@@ -7,7 +7,9 @@
     {
       "id": "1W7z4JG2r4b5toCTWWETD5msnj9OTVLFE",
       "name": "1000150290.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "rating": 5,
+      "notiz": "der 1. test"
     },
     {
       "id": "1pqLk7kjRfYRjPhP2g805kK2_eaGqRzUf",
@@ -180,5 +182,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-09-16T12:38:44.894Z"
+  "updatedAt": "2026-09-17T13:25:14.631Z"
 }
