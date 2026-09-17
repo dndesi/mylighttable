@@ -12,6 +12,21 @@
       "notiz": "der 1. test"
     },
     {
+      "id": "1YkmLF9gyTUg5EOTnoqSihLxe8P11JqNE",
+      "name": "IMG_1486.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1Bsu7yF6BxH-EPnvluuh7fFA9dm8QFjeC",
+      "name": "IMG_1674.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "179_WfiNj9tX4rZEyLqjq8vMVFgMklhyE",
+      "name": "IMG_1713.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
       "id": "1pqLk7kjRfYRjPhP2g805kK2_eaGqRzUf",
       "name": "1000150291.jpg",
       "mimeType": "image/jpeg"
@@ -182,5 +197,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-09-17T13:25:14.631Z"
+  "updatedAt": "2026-09-17T13:40:20.061Z"
 }
