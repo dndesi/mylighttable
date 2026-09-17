@@ -296,6 +296,38 @@ body {
   white-space: nowrap;
 }
 
+.rating-stars {
+  display: block;
+  margin: 2px 0 4px;
+  line-height: 1;
+}
+
+.rating-stars .star {
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--border);
+  touch-action: manipulation;
+}
+
+.rating-stars .star.filled {
+  color: var(--yellow);
+}
+
+.media-notiz-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--accent);
+  font: inherit;
+  font-size: 11px;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+}
+
 .media-actions {
   padding: 4px 8px 8px;
   display: flex;

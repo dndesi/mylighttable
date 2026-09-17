@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v2.9 – Daten auf separaten 'data'-Branch
+// v3.0 – Bewertung (1-5 Sterne) + Notiz pro Bild
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -105,7 +105,11 @@ function renderGalleryList() {
 async function openGallery(id) {
   const gallery = state.galleries.find(g => g.id === id);
   if (!gallery) return;
-  state.current = { ...gallery };
+  state.current = {
+    ...gallery,
+    ratings: { ...(gallery.ratings || {}) },
+    notes: { ...(gallery.notes || {}) }
+  };
   state.files = [];
 
   showDetailStatus('Lade Medien…', 'info');
@@ -138,6 +142,26 @@ function openNewGallery() {
 function backToList() {
   showView('list');
   renderGalleryList();
+}
+
+// ─── Öffentliche Dateiliste bauen (sortiert nach Bewertung) ──────────────────
+// Sterne + Notiz stammen aus state.current.ratings/.notes (private Arbeitskopie,
+// s. „Bewertung/Notiz setzen" unten) und werden hier ins öffentliche Format
+// gebracht: Dateien mit Bewertung zuerst (absteigend, stabile Sortierung –
+// unbewertete bleiben hinten in ursprünglicher Reihenfolge). rating/notiz
+// werden nur geschrieben, wenn tatsächlich vergeben (kein Datenmüll im JSON).
+
+function buildPublicFiles() {
+  const ratings = state.current?.ratings || {};
+  const notes   = state.current?.notes   || {};
+  return [...state.files]
+    .sort((a, b) => (ratings[b.id] || 0) - (ratings[a.id] || 0))
+    .map(f => {
+      const entry = { id: f.id, name: f.name, mimeType: f.mimeType || '' };
+      if (ratings[f.id]) entry.rating = ratings[f.id];
+      if (notes[f.id])   entry.notiz  = notes[f.id];
+      return entry;
+    });
 }
 
 // ─── Galerie speichern ────────────────────────────────────────────────────────
@@ -177,7 +201,7 @@ async function saveGallery() {
       description: desc,
       expiry: exp || null,
       heroFileId: state.current?.heroFileId || null,
-      files: state.files.map(f => ({ id: f.id, name: f.name, mimeType: f.mimeType || '' })),
+      files: buildPublicFiles(),
       updatedAt: now
     };
     const publicFileId = await Drive.saveGalleryPublicFile(
@@ -196,6 +220,8 @@ async function saveGallery() {
       id, name, pin, description: desc,
       expiry: exp || null,
       heroFileId: state.current?.heroFileId || null,
+      ratings: state.current?.ratings || {},
+      notes: state.current?.notes || {},
       folderId, publicFileId,
       fileCount: state.files.length,
       createdAt: state.current?.createdAt || now,
@@ -422,6 +448,8 @@ async function deleteFile(fileId, fileName) {
     if (state.current?.heroFileId === fileId) {
       state.current.heroFileId = null;
     }
+    if (state.current?.ratings) delete state.current.ratings[fileId];
+    if (state.current?.notes)   delete state.current.notes[fileId];
     state.files = state.files.filter(f => f.id !== fileId);
     await syncCurrentGalleryPublic();
     renderMediaGrid();
@@ -440,6 +468,29 @@ async function setHero(fileId) {
   showDetailStatus('Hero-Bild ausgewählt — bitte auf Speichern klicken.', 'info');
 }
 
+// ─── Bewertung/Notiz setzen ───────────────────────────────────────────────────
+// Rein intern (Admin-Favoritenauswahl) — Klick auf den aktuell aktiven Stern
+// setzt die Bewertung zurück auf 0. Wirkt sich erst nach „Speichern" auf die
+// öffentliche Sortierreihenfolge/Anzeige aus (siehe buildPublicFiles()).
+
+function setRating(fileId, value) {
+  if (!state.current) return;
+  if (!state.current.ratings) state.current.ratings = {};
+  const current = state.current.ratings[fileId] || 0;
+  state.current.ratings[fileId] = value === current ? 0 : value;
+  renderMediaGrid();
+  showDetailStatus('Bewertung gesetzt — bitte auf Speichern klicken.', 'info');
+}
+
+function setNote(fileId, value) {
+  if (!state.current) return;
+  if (!state.current.notes) state.current.notes = {};
+  const trimmed = value.trim();
+  if (trimmed) state.current.notes[fileId] = trimmed;
+  else delete state.current.notes[fileId];
+  showDetailStatus('Notiz gespeichert — bitte auf Speichern klicken.', 'info');
+}
+
 // ─── Public JSON der aktuellen Galerie synchronisieren ───────────────────────
 
 async function syncCurrentGalleryPublic() {
@@ -449,7 +500,7 @@ async function syncCurrentGalleryPublic() {
     description: state.current.description || '',
     expiry: state.current.expiry || null,
     heroFileId: state.current.heroFileId || null,
-    files: state.files.map(f => ({ id: f.id, name: f.name, mimeType: f.mimeType || '' })),
+    files: buildPublicFiles(),
     updatedAt: new Date().toISOString()
   };
 
@@ -512,13 +563,17 @@ function renderMediaGrid() {
     return;
   }
   empty.style.display = 'none';
-  const heroId = state.current?.heroFileId;
+  const heroId  = state.current?.heroFileId;
+  const ratings = state.current?.ratings || {};
+  const notes   = state.current?.notes   || {};
 
   grid.innerHTML = state.files.map(file => {
     const isImage = file.mimeType?.startsWith('image/');
     const isVideo = file.mimeType?.startsWith('video/');
     const isHero  = file.id === heroId;
     const thumb   = isImage ? Drive.getThumbnailUrl(file.id) : null;
+    const rating  = ratings[file.id] || 0;
+    const note    = notes[file.id] || '';
 
     return `
       <div class="media-card ${isHero ? 'is-hero' : ''}">
@@ -531,6 +586,9 @@ function renderMediaGrid() {
         </div>
         <div class="media-info">
           <span class="media-name" title="${file.name}">${file.name}</span>
+          ${renderRatingInput(file.id, rating)}
+          <textarea class="media-notiz-input" rows="2" placeholder="Notiz…"
+            onchange="setNote('${file.id}', this.value)">${escapeHtml(note)}</textarea>
         </div>
         <div class="media-actions">
           ${isImage && !isHero
@@ -540,6 +598,22 @@ function renderMediaGrid() {
         </div>
       </div>`;
   }).join('');
+}
+
+// ─── Render: Sterne-Eingabe (5 klickbare Sterne) ──────────────────────────────
+
+function renderRatingInput(fileId, rating) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    stars += `<span class="star ${i <= rating ? 'filled' : ''}" onclick="setRating('${fileId}', ${i})" title="${i} Stern${i > 1 ? 'e' : ''}">★</span>`;
+  }
+  return `<span class="rating-stars">${stars}</span>`;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

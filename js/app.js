@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v3.3 – Rate-limit Fix: 300ms Pause zwischen Drive-Downloads
+// v3.5 – Bewertung (Sterne) + Notiz pro Bild anzeigen
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -165,10 +165,18 @@ function renderGrid() {
         </div>
         <div class="gallery-card-footer">
           <span class="gallery-file-name" title="${file.name}">${file.name}</span>
+          ${file.rating ? `<span class="gallery-rating" title="${file.rating} von 5 Sternen">${'★'.repeat(file.rating)}${'☆'.repeat(5 - file.rating)}</span>` : ''}
           <button class="btn-download" onclick="trackDownload('${file.id}','${file.name}','${dlUrl}')">↓ Download</button>
         </div>
+        ${file.notiz ? `<div class="gallery-card-notiz">${escapeHtml(file.notiz)}</div>` : ''}
       </div>`;
   }).join('');
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
 // ─── Alle herunterladen (ZIP) ─────────────────────────────────────────────────
