@@ -5,11 +5,6 @@
   "heroFileId": "1M0vdCWsOqWx-sZmrH3i7nE9AMSw1Yxmh",
   "files": [
     {
-      "id": "1xHeKUDHqUSRJsU3PUlXWHkb7a6HlFjoD",
-      "name": "1000156426.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
       "id": "1cKLxIDrHcXG41yovCzN0FcArwskvtvke",
       "name": "1000156428.jpg",
       "mimeType": "image/jpeg"
@@ -455,5 +450,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-09-27T17:41:49.807Z"
+  "updatedAt": "2026-09-27T18:19:25.097Z"
 }
