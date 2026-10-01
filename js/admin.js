@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v3.0 – Bewertung (1-5 Sterne) + Notiz pro Bild
+// v3.1 – Versionsnummer klickbar, zeigt Versionshistorie (CHANGELOG.md)
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -14,6 +14,12 @@ let state = {
 // ─── Init ────────────────────────────────────────────────────────────────────
 
 window.addEventListener('DOMContentLoaded', () => {
+  const vEl = document.getElementById('app-version');
+  if (vEl && CONFIG?.VERSION) {
+    vEl.textContent = 'V ' + CONFIG.VERSION;
+    vEl.addEventListener('click', showVersionHistory);
+  }
+
   Auth.init(onLogin, onLogout);
   document.getElementById('btn-login').addEventListener('click', () => Auth.login());
   document.getElementById('btn-logout').addEventListener('click', () => Auth.logout());
@@ -437,6 +443,88 @@ function showSaveReminder(count) {
       </div>
     </div>`;
   document.body.appendChild(modal);
+}
+
+// ─── Versionshistorie (CHANGELOG.md) ──────────────────────────────────────────
+
+async function showVersionHistory() {
+  const existing = document.getElementById('version-history-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'version-history-modal';
+  modal.innerHTML = `
+    <div style="
+      position:fixed; inset:0; background:rgba(0,0,0,0.6);
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; backdrop-filter:blur(4px);
+    ">
+      <div style="
+        background:#1e1e2e; border:1px solid rgba(255,255,255,0.15);
+        border-radius:16px; padding:28px 32px; max-width:480px; width:90%;
+        max-height:70vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.5);
+      ">
+        <h3 style="color:#fff;font-size:18px;margin:0 0 4px">Versionshistorie</h3>
+        <div id="version-history-content" style="color:rgba(255,255,255,0.75);font-size:13px;line-height:1.6">
+          Lädt…
+        </div>
+        <button onclick="document.getElementById('version-history-modal').remove();"
+          style="
+            background:transparent;color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.15);
+            border-radius:8px;font-size:13px;cursor:pointer;padding:8px 16px;margin-top:16px;width:100%;
+          ">
+          Schließen
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const contentEl = document.getElementById('version-history-content');
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/dndesi/mylighttable/master/CHANGELOG.md?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const markdown = await res.text();
+    contentEl.innerHTML = renderChangelogHtml(markdown);
+  } catch (e) {
+    contentEl.innerHTML = `<p style="color:#e05c5c">Changelog konnte nicht geladen werden: ${escapeHtml(e.message)}</p>`;
+  }
+}
+
+// Minimaler Markdown→HTML-Konverter, nur für das eigene CHANGELOG.md-Format
+// (## Überschriften, - Listenpunkte, mit 2 Leerzeichen eingerückte
+// Fortsetzungszeilen für lange Bullet-Points) — kein allgemeiner
+// Markdown-Parser.
+function renderChangelogHtml(markdown) {
+  let html = '';
+  let inList = false;
+  for (const rawLine of markdown.split('\n')) {
+    const line = rawLine.trim();
+
+    // Eingerückte Fortsetzung eines Listenpunkts (z. B. Zeilenumbruch
+    // mitten in einem langen Bullet) -- an den letzten <li> anhängen
+    // statt einen neuen Absatz zu beginnen.
+    if (inList && /^\s/.test(rawLine) && !line.startsWith('- ') && !line.startsWith('## ') && line !== '') {
+      if (html.endsWith('</li>')) {
+        html = html.slice(0, -5) + ' ' + escapeHtml(line) + '</li>';
+      }
+      continue;
+    }
+
+    if (line.startsWith('## ')) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<h4 style="margin:20px 0 8px;color:#fff;font-size:15px">${escapeHtml(line.slice(3))}</h4>`;
+    } else if (line.startsWith('- ')) {
+      if (!inList) { html += '<ul style="margin:0 0 4px;padding-left:20px">'; inList = true; }
+      html += `<li style="margin-bottom:4px">${escapeHtml(line.slice(2))}</li>`;
+    } else if (line === '' || line === '# Changelog') {
+      continue; // Leerzeilen/Haupttitel überspringen, steht schon im Modal-Header
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<p style="margin:0 0 8px">${escapeHtml(line)}</p>`;
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
 }
 
 // ─── Datei löschen ────────────────────────────────────────────────────────────

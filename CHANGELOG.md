@@ -1,5 +1,15 @@
 # Changelog
 
+## V3.7
+
+- Ab dieser Version: **eine einheitliche App-Version** (`CONFIG.VERSION`)
+  für Admin und Frontend zusammen, statt getrennter Admin-/Frontend-Zahlen
+  wie bisher. Frühere Einträge unten behalten ihre alte Schreibweise.
+- Admin: Versionsnummer im Header (oben links) ist jetzt anklickbar und
+  zeigt diese Versionshistorie direkt in der App (lädt `CHANGELOG.md`
+  live vom Repo). Im Frontend bleibt die Versionsnummer wie bisher nur
+  Anzeige, ohne Klickfunktion.
+
 ## V3.6 (Frontend)
 
 - Notiz wird bei JPEG-Downloads automatisch als EXIF-UserComment

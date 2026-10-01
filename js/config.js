@@ -1,5 +1,5 @@
 // config.js – API Keys & App-Konfiguration
-// v2.0
+// v2.2
 // ⚠️ WICHTIG: Trage hier deine Google Cloud Credentials ein (siehe SETUP.md)
 
 const CONFIG = {
@@ -7,5 +7,7 @@ const CONFIG = {
   GOOGLE_API_KEY: 'AIzaSyBE4vkwb3nMh-we9_zbB7EqkfbDiM8iB0o',
   // Einmalig nach erster Galerie im Admin eintragen (wird im Admin angezeigt):
   PUBLIC_INDEX_FILE_ID: '1lFj4p_Lz9NTT72w6WTwEZyNS1ygJmH6X',
-  VERSION: '1.2',
+  // Einheitliche App-Version (unabhängig von den ?v=-Cache-Busting-Nummern
+  // pro Datei) — bei jeder Änderung hochzählen, passend zum CHANGELOG.md-Eintrag.
+  VERSION: '3.7',
 };

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=2.0">
-  <link rel="stylesheet" href="css/admin.css?v=2.6">
+  <link rel="stylesheet" href="css/admin.css?v=2.7">
 </head>
 <body>
 
@@ -28,7 +28,9 @@
   <!-- ═══ GALERIE-LISTE ═══════════════════════════════════════════════════ -->
   <div id="view-list" style="display:none">
     <header class="admin-header">
-      <div class="logo">🔦 MyLighttable <span>Admin</span></div>
+      <div class="logo">🔦 MyLighttable <span>Admin</span>
+        <span id="app-version" class="app-version" title="Versionshistorie anzeigen"></span>
+      </div>
       <div style="display:flex;gap:10px;align-items:center">
         <a href="index.html" class="btn-frontend" title="Frontend öffnen">Frontend</a>
         <button id="btn-new-gallery" class="btn btn-primary btn-sm">+Galerie</button>
@@ -143,10 +145,10 @@
 
   <!-- Google Identity Services -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="js/config.js?v=2.1"></script>
+  <script src="js/config.js?v=2.2"></script>
   <script src="js/auth.js?v=2.0"></script>
   <script src="js/drive.js?v=2.2"></script>
   <script src="js/github.js?v=1.4"></script>
-  <script src="js/admin.js?v=3.0"></script>
+  <script src="js/admin.js?v=3.1"></script>
 </body>
 </html>
