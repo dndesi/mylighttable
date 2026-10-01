@@ -26,6 +26,72 @@
       "notiz": "Transport zur Baustelle - Fertige fenster"
     },
     {
+      "id": "18Cil2TllBcx_ourVwXPn6I3-9bq0MV75",
+      "name": "1000157103.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1MW7ryyOM29aBwuJ1-TstK1tKtXEly3N7",
+      "name": "1000157104.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1xqryJZPrQN3QOBiprRty96vFFW7aNwE1",
+      "name": "1000157105.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1dImNTJ7Q0a18BIhv1CUWVr4JQdMHwlo0",
+      "name": "1000157106.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1ke86DGfRGdpKUYoHd9HYbPiPUWfmjCvN",
+      "name": "1000157107.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1bgfShcfg4KkX8fYSLiIKncKXDydMRf89",
+      "name": "1000157108.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1MhZ9q6gIxgAy5sdBaeGIdtnaVasUBlQX",
+      "name": "1000157109.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1kkIQg2NFkcIGyqYWdjWtUjzeWGdzzFJz",
+      "name": "1000157110.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1tVuxgjAT4-y9zzdAs_V-VU7wZGt2tVl0",
+      "name": "1000157111.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1IGMIR-0Kbk0wXlyPEEcpu-vbphfCjLfm",
+      "name": "1000157112.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1kP8G9lWMXvGqnIz8dCC1O9Y9vRyUBz4V",
+      "name": "1000157113.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1iVbugWivgKdpwHLyDQSl2y3CqLCBvn0O",
+      "name": "1000157114.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1gBKjR6Y2ex8ueYhpQ_ZNGu-HCAY9Laz_",
+      "name": "1000157116.jpg",
+      "mimeType": "image/jpeg",
+      "notiz": "Beschichtung von Fensterbänken"
+    },
+    {
       "id": "1b18v52hfklpGxd8jsV0OMW1XyBxvq6bW",
       "name": "1000155038.jpg",
       "mimeType": "image/jpeg",
@@ -232,5 +298,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-10-01T11:52:48.763Z"
+  "updatedAt": "2026-10-01T12:46:09.277Z"
 }
