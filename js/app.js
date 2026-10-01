@@ -1,5 +1,5 @@
 // app.js – Frontend Galerie-Logik
-// v3.5 – Bewertung (Sterne) + Notiz pro Bild anzeigen
+// v3.6 – Notiz als EXIF-UserComment in JPEGs einbetten (ZIP + Einzeldownload)
 
 const API      = 'https://www.googleapis.com/drive/v3';
 const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
@@ -22,9 +22,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('lightbox-next').addEventListener('click', () => moveLightbox(1));
   document.getElementById('btn-download-all').addEventListener('click', downloadAll);
   document.getElementById('btn-download-selected').addEventListener('click', downloadSelected);
-  document.getElementById('lightbox-download').addEventListener('click', () => {
+  document.getElementById('lightbox-download').addEventListener('click', e => {
     const file = galleryMeta?.files?.[currentLightboxIndex];
-    if (file) trackDownloadHit(file.id);
+    if (file) {
+      e.preventDefault();
+      downloadFile(file.id);
+    }
   });
 
   // Tastatur-Navigation für Lightbox
@@ -147,7 +150,6 @@ function renderGrid() {
     const isImage   = file.mimeType?.startsWith('image/');
     const isVideo   = file.mimeType?.startsWith('video/');
     const thumbUrl  = isImage ? `https://drive.google.com/thumbnail?id=${file.id}&sz=w400` : null;
-    const dlUrl     = `https://drive.google.com/uc?export=download&id=${file.id}`;
 
     return `
       <div class="gallery-card">
@@ -166,7 +168,7 @@ function renderGrid() {
         <div class="gallery-card-footer">
           <span class="gallery-file-name" title="${file.name}">${file.name}</span>
           ${file.rating ? `<span class="gallery-rating" title="${file.rating} von 5 Sternen">${'★'.repeat(file.rating)}${'☆'.repeat(5 - file.rating)}</span>` : ''}
-          <button class="btn-download" onclick="trackDownload('${file.id}','${file.name}','${dlUrl}')">↓ Download</button>
+          <button class="btn-download" onclick="downloadFile('${file.id}')">↓ Download</button>
         </div>
         ${file.notiz ? `<div class="gallery-card-notiz">${escapeHtml(file.notiz)}</div>` : ''}
       </div>`;
@@ -214,7 +216,8 @@ async function downloadAll() {
       const res = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`, { signal });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
-      zip.file(file.name, blob);
+      const finalBlob = await ExifNotiz.embedIfApplicable(blob, file.mimeType, file.notiz);
+      zip.file(file.name, finalBlob);
       trackDownloadHit(file.id);
     } catch (e) {
       if (e.name === 'AbortError') { aborted = true; break; }
@@ -359,7 +362,8 @@ async function downloadSelected() {
       bar.querySelector('.bar-fill').style.width = Math.round(done / total * 100) + '%';
       const res  = await fetch(`${API}/files/${file.id}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
       const blob = await res.blob();
-      zip.file(file.name, blob);
+      const finalBlob = await ExifNotiz.embedIfApplicable(blob, file.mimeType, file.notiz);
+      zip.file(file.name, finalBlob);
       trackDownloadHit(file.id);
     } catch { /* überspringen */ }
     done++;
@@ -393,8 +397,37 @@ function trackDownloadHit(fileId) {
   fetch(`${COUNT_BASE}/hit/${fileId}`).catch(() => {});
 }
 
-function trackDownload(fileId, fileName, dlUrl) {
+// Einzelbild-Download (Karte + Lightbox). Nur bei JPEG mit Notiz wird der
+// Datei-Inhalt angefasst (Fetch + EXIF-Einbettung); alles andere nutzt
+// weiterhin den schnellen Direktlink — sonst würden z. B. Videos unnötig
+// komplett in den Browser-Speicher geladen, nur um sie unverändert wieder
+// herauszuschreiben. Schlägt der Fetch/Embed-Weg fehl, fällt die Funktion
+// automatisch auf den Direktlink zurück.
+async function downloadFile(fileId) {
   trackDownloadHit(fileId);
+  const file = (galleryMeta?.files || []).find(f => f.id === fileId);
+  const fileName = file?.name || fileId;
+  const dlUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+  if (file?.mimeType === 'image/jpeg' && file?.notiz) {
+    try {
+      const res = await fetch(`${API}/files/${fileId}?alt=media&key=${CONFIG.GOOGLE_API_KEY}`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const blob = await res.blob();
+      const finalBlob = await ExifNotiz.embedIfApplicable(blob, file.mimeType, file.notiz);
+      const url = URL.createObjectURL(finalBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+      return;
+    } catch (e) {
+      console.warn('Download mit Notiz fehlgeschlagen, Fallback auf Direktlink:', e.message);
+    }
+  }
+
   const a = document.createElement('a');
   a.href = dlUrl;
   a.download = fileName;

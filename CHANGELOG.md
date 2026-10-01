@@ -1,5 +1,15 @@
 # Changelog
 
+## V3.6 (Frontend)
+
+- Notiz wird bei JPEG-Downloads automatisch als EXIF-UserComment
+  eingebettet (ZIP-Export und Einzelbild-Download, Karte + Lightbox) —
+  Umlaute/Sonderzeichen korrekt (Unicode-EXIF-Feld). Videos und Bilder
+  ohne Notiz werden unverändert wie bisher heruntergeladen (kein
+  Performance-Nachteil). Neue Bibliothek: piexifjs (CDN, kein Server
+  nötig). Schlägt die Einbettung fehl, wird automatisch die
+  Original-Datei verwendet — Download bricht nie deswegen ab.
+
 ## V3.0 (Admin) / V3.5 (Frontend)
 
 - Admin: Bewertung (1–5 Sterne) und Notiz pro Bild im Medien-Raster
