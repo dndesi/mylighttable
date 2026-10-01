@@ -16,7 +16,7 @@
       "name": "IMG_1713.jpg",
       "mimeType": "image/jpeg",
       "rating": 1,
-      "notiz": "Bauseitige Dokumentation - Eingebautes fertiges fenster"
+      "notiz": "Bauseitige Dokumentation - Eingebautes fertiges Fenster"
     },
     {
       "id": "1W7z4JG2r4b5toCTWWETD5msnj9OTVLFE",
@@ -28,12 +28,14 @@
     {
       "id": "1hk79j06rBlemepPxSjUYoVl13XjBAKjp",
       "name": "_MG_9208.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "notiz": "Bauseitige Dokumentation - Eingebautes fertiges Fenster"
     },
     {
       "id": "1hbKhllRqggI1fsc-_WxE0_AkNZaWLLPv",
       "name": "_MG_9195.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "notiz": "Bauseitige Dokumentation - Eingebautes fertiges Fenster"
     },
     {
       "id": "18Cil2TllBcx_ourVwXPn6I3-9bq0MV75",
@@ -307,5 +309,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-10-01T13:12:37.680Z"
+  "updatedAt": "2026-10-01T13:14:34.002Z"
 }
