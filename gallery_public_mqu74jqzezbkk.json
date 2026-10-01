@@ -28,7 +28,8 @@
     {
       "id": "1b18v52hfklpGxd8jsV0OMW1XyBxvq6bW",
       "name": "1000155038.jpg",
-      "mimeType": "image/jpeg"
+      "mimeType": "image/jpeg",
+      "notiz": "Bearbeitung der Fensterbänke"
     },
     {
       "id": "17Hj5g22CsekgpcQHWzrn5otcLLnVbdAq",
@@ -231,5 +232,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-09-22T18:23:02.604Z"
+  "updatedAt": "2026-10-01T11:52:48.763Z"
 }
