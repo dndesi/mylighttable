@@ -23,7 +23,17 @@
       "name": "1000150290.jpg",
       "mimeType": "image/jpeg",
       "rating": 1,
-      "notiz": "Transport zur Baustelle - Fertige Kastenfenster"
+      "notiz": "Transport zur Baustelle - Fertige fenster"
+    },
+    {
+      "id": "1hk79j06rBlemepPxSjUYoVl13XjBAKjp",
+      "name": "_MG_9208.jpg",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "id": "1hbKhllRqggI1fsc-_WxE0_AkNZaWLLPv",
+      "name": "_MG_9195.jpg",
+      "mimeType": "image/jpeg"
     },
     {
       "id": "18Cil2TllBcx_ourVwXPn6I3-9bq0MV75",
@@ -88,8 +98,7 @@
     {
       "id": "1gBKjR6Y2ex8ueYhpQ_ZNGu-HCAY9Laz_",
       "name": "1000157116.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Beschichtung von Fensterbänken"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "1b18v52hfklpGxd8jsV0OMW1XyBxvq6bW",
@@ -110,32 +119,27 @@
     {
       "id": "1kZhn3q1gsS1oU46kNNNZJAf9AAq9oZ0_",
       "name": "1000155035.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Dichtung an runderneuertem Fenster"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "1bJk600sSbbK2mLotX9eXTpmHQbWI7_tj",
       "name": "1000155034.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Dichtung an runderneuertem Fenster"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "14HhZ2Ec5EiQjCNLPE_gjEJb_jJDsPyJe",
       "name": "1000155033.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Eingefräste Nut für Dichtungen"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "1TI2h_njYgRBiFiBDCP9PfgNtCjOFaelC",
       "name": "1000155032.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Eingefräste Nut für Dichtungen"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "1pqLk7kjRfYRjPhP2g805kK2_eaGqRzUf",
       "name": "1000150291.jpg",
-      "mimeType": "image/jpeg",
-      "notiz": "Transport zur Baustelle - Fertige Kastenfenster"
+      "mimeType": "image/jpeg"
     },
     {
       "id": "1dDS741Y9oQOG-XieWfafsFNVepinHX9k",
@@ -303,5 +307,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-10-01T12:48:01.132Z"
+  "updatedAt": "2026-10-01T13:12:37.680Z"
 }
