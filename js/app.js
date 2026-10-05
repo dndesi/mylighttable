@@ -1,8 +1,16 @@
 // app.js – Frontend Galerie-Logik
-// v3.6 – Notiz als EXIF-UserComment in JPEGs einbetten (ZIP + Einzeldownload)
+// v3.7 – Frische Daten trotz GitHub-CDN-Cache (rawUrl), kein ?t= mehr
 
 const API      = 'https://www.googleapis.com/drive/v3';
-const RAW_BASE = 'https://raw.githubusercontent.com/dndesi/mylighttable/data';
+// raw.githubusercontent.com cached jede Datei 5 Min. (max-age=300) und ignoriert
+// dabei ?t=… komplett (gemessen 05.10.2026) — geänderte Galerien erschienen so
+// bis zu 5 Min. verspätet. Die Groß-/Kleinschreibung von Owner/Repo ist GitHub
+// egal, dem CDN-Cache aber nicht: eine zufällige Schreibweise bekommt einen
+// eigenen (leeren) Cache-Eintrag und liefert damit immer den frischen Stand.
+function rawUrl(file) {
+  const rnd = s => [...s].map(c => Math.random() < 0.5 ? c.toUpperCase() : c).join('');
+  return `https://raw.githubusercontent.com/${rnd('dndesi')}/${rnd('mylighttable')}/data/${file}`;
+}
 let pinIndex          = null;   // { hash: publicFileId }
 let galleryMeta       = null;   // aktuelle Galerie-Daten
 let currentLightboxIndex = -1;  // aktiver Index in der Lightbox
@@ -46,7 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 async function loadPinIndex() {
   try {
-    const res = await fetch(`${RAW_BASE}/pin_index.json?t=${Date.now()}`);
+    const res = await fetch(rawUrl('pin_index.json'));
     if (!res.ok) throw new Error('HTTP ' + res.status);
     pinIndex = await res.json();
     showView('pin');
@@ -80,7 +88,7 @@ async function handlePinSubmit(e) {
 
   // Galerie laden (galleryFileId = galleryId aus pin_index)
   try {
-    const res = await fetch(`${RAW_BASE}/gallery_public_${galleryFileId}.json?t=${Date.now()}`);
+    const res = await fetch(rawUrl(`gallery_public_${galleryFileId}.json`));
     if (!res.ok) throw new Error('HTTP ' + res.status);
     galleryMeta = await res.json();
     renderGallery();

@@ -1,5 +1,5 @@
 // config.js – API Keys & App-Konfiguration
-// v2.2
+// v2.3
 // ⚠️ WICHTIG: Trage hier deine Google Cloud Credentials ein (siehe SETUP.md)
 
 const CONFIG = {
@@ -9,5 +9,5 @@ const CONFIG = {
   PUBLIC_INDEX_FILE_ID: '1lFj4p_Lz9NTT72w6WTwEZyNS1ygJmH6X',
   // Einheitliche App-Version (unabhängig von den ?v=-Cache-Busting-Nummern
   // pro Datei) — bei jeder Änderung hochzählen, passend zum CHANGELOG.md-Eintrag.
-  VERSION: '3.7',
+  VERSION: '3.8',
 };

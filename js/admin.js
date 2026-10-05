@@ -1,5 +1,5 @@
 // admin.js – Dashboard Logik
-// v3.1 – Versionsnummer klickbar, zeigt Versionshistorie (CHANGELOG.md)
+// v3.2 – GitHub-Sync-Fehler sichtbar (statt von „Gespeichert ✓" überschrieben)
 
 // ─── State ───────────────────────────────────────────────────────────────────
 
@@ -150,6 +150,27 @@ function backToList() {
   renderGalleryList();
 }
 
+// ─── GitHub-Schreibzugriff mit sichtbarem Fehler ──────────────────────────────
+// Das Frontend liest ausschließlich von GitHub. Schlägt dieser Schritt fehl
+// (z. B. Token abgelaufen), war die Galerie in Drive gespeichert, aber für
+// Besucher nicht sichtbar — und die Warnung wurde bisher sofort von
+// „Gespeichert ✓" überschrieben bzw. nur in die Konsole geschrieben.
+// Gibt den Fehlertext zurück (null = Erfolg), damit der Aufrufer ihn anzeigt.
+
+async function pushToGitHub(path, data) {
+  try {
+    await GitHub.saveFile(path, data);
+    return null;
+  } catch (e) {
+    return e.message;
+  }
+}
+
+function githubErrorText(err) {
+  return `⚠ In Drive gespeichert, aber NICHT im Frontend veröffentlicht — GitHub-Fehler: ${err}. ` +
+         `Bitte in der Galerieliste oben „🔑 Token" prüfen/erneuern und danach nochmal speichern.`;
+}
+
 // ─── Öffentliche Dateiliste bauen (sortiert nach Bewertung) ──────────────────
 // Sterne + Notiz stammen aus state.current.ratings/.notes (private Arbeitskopie,
 // s. „Bewertung/Notiz setzen" unten) und werden hier ins öffentliche Format
@@ -215,11 +236,7 @@ async function saveGallery() {
     );
 
     // GitHub-Sync (Frontend liest von hier)
-    try {
-      await GitHub.saveFile(`gallery_public_${id}.json`, publicData);
-    } catch (e) {
-      showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
-    }
+    const galleryGitErr = await pushToGitHub(`gallery_public_${id}.json`, publicData);
 
     // Galerie-Objekt zusammenbauen
     const updated = {
@@ -243,12 +260,14 @@ async function saveGallery() {
     await Drive.saveGalleriesIndex({ galleries: state.galleries });
 
     // Pin-Index neu schreiben
-    await refreshPinIndex();
+    const pinGitErr = await refreshPinIndex();
 
     state.current = updated;
     renderDetailForm(state.current);
     document.getElementById('detail-upload-section').style.display = 'block';
-    showDetailStatus('Gespeichert ✓', 'success');
+    const gitErr = galleryGitErr || pinGitErr;
+    if (gitErr) showDetailStatus(githubErrorText(gitErr), 'error');
+    else        showDetailStatus('Gespeichert ✓', 'success');
   } catch (e) {
     showDetailStatus('Fehler: ' + e.message, 'error');
   } finally {
@@ -270,14 +289,8 @@ async function refreshPinIndex() {
   const fileId = await Drive.savePinIndex(pinObj);
   showPinIndexHint(fileId);
 
-  // GitHub (Frontend liest von hier)
-  try {
-    await GitHub.saveFile('pin_index.json', pinObj);
-  } catch (e) {
-    showDetailStatus('⚠ GitHub-Sync: ' + e.message, 'error');
-  }
-
-  return fileId;
+  // GitHub (Frontend liest von hier) — Fehlertext (oder null) an Aufrufer
+  return pushToGitHub('pin_index.json', pinObj);
 }
 
 function showPinIndexHint(fileId) {
@@ -388,7 +401,7 @@ async function startUpload() {
 
   // Remote ist autoritativ
   state.files = await Drive.listFiles(state.current.folderId);
-  await syncCurrentGalleryPublic();
+  const syncGitErr = await syncCurrentGalleryPublic();
   renderMediaGrid();
 
   bar.style.display = 'none';
@@ -398,7 +411,8 @@ async function startUpload() {
   document.getElementById('upload-input').value = '';
   document.getElementById('upload-count').textContent = '';
   document.getElementById('btn-upload').disabled = false;
-  showDetailStatus(`${total} Datei(en) hochgeladen ✓`, 'success');
+  if (syncGitErr) showDetailStatus(githubErrorText(syncGitErr), 'error');
+  else            showDetailStatus(`${total} Datei(en) hochgeladen ✓`, 'success');
   showSaveReminder(total);
 }
 
@@ -539,9 +553,10 @@ async function deleteFile(fileId, fileName) {
     if (state.current?.ratings) delete state.current.ratings[fileId];
     if (state.current?.notes)   delete state.current.notes[fileId];
     state.files = state.files.filter(f => f.id !== fileId);
-    await syncCurrentGalleryPublic();
+    const syncGitErr = await syncCurrentGalleryPublic();
     renderMediaGrid();
-    showDetailStatus('Datei gelöscht ✓', 'success');
+    if (syncGitErr) showDetailStatus(githubErrorText(syncGitErr), 'error');
+    else            showDetailStatus('Datei gelöscht ✓', 'success');
   } catch (e) {
     showDetailStatus('Fehler: ' + e.message, 'error');
   }
@@ -599,16 +614,14 @@ async function syncCurrentGalleryPublic() {
   await Drive.saveGalleryPublicFile(state.current.id, publicData, state.current.publicFileId);
 
   // GitHub (Frontend liest von hier)
-  try {
-    await GitHub.saveFile(`gallery_public_${state.current.id}.json`, publicData);
-  } catch (e) {
-    console.warn('GitHub sync:', e.message);
-  }
+  const gitErr = await pushToGitHub(`gallery_public_${state.current.id}.json`, publicData);
 
   // fileCount in Index aktualisieren
   state.current.fileCount = state.files.length;
   state.galleries = state.galleries.map(g => g.id === state.current.id ? { ...g, ...state.current } : g);
   await Drive.saveGalleriesIndex({ galleries: state.galleries });
+
+  return gitErr; // Fehlertext oder null — Aufrufer zeigt ihn an
 }
 
 // ─── Download-Zähler laden ───────────────────────────────────────────────────

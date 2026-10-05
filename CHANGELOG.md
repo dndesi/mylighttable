@@ -1,5 +1,17 @@
 # Changelog
 
+## V3.8
+
+- Frontend: Neue Bilder und Änderungen erscheinen jetzt sofort statt erst
+  nach bis zu 5 Minuten. Ursache war der Cache von raw.githubusercontent.com,
+  der den bisherigen `?t=`-Trick ignorierte. Die App ruft ihre Daten jetzt über
+  eine URL mit zufälliger Groß-/Kleinschreibung ab, die der Cache nicht kennt.
+- Admin: Schlägt das Veröffentlichen auf GitHub fehl (z. B. Token abgelaufen),
+  steht jetzt eine dauerhafte rote Meldung mit Hinweis auf „🔑 Token" da.
+  Vorher wurde der Fehler von „Gespeichert ✓" überschrieben bzw. nur in die
+  Browser-Konsole geschrieben — Bilder waren dann im Admin sichtbar, aber nie im
+  Frontend.
+
 ## V3.7
 
 - Ab dieser Version: **eine einheitliche App-Version** (`CONFIG.VERSION`)
