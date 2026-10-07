@@ -2,7 +2,7 @@
   "galleryName": "Leoni Torres",
   "description": "Spreadshirt Ideen",
   "expiry": "2026-10-18",
-  "heroFileId": null,
+  "heroFileId": "14qLNlTkVr0PqBxCi3EyzSjOFFz9yq7nQ",
   "files": [
     {
       "id": "15BMaSwDG5MkEBq9wSEI0eGY16q3WpqOf",
@@ -49,12 +49,6 @@
     {
       "id": "1SMUMJzVovev56-501Bv-cddAsDr-NiQn",
       "name": "Bildschirmfoto 2026-10-07 um 23.05.11.png",
-      "mimeType": "image/png",
-      "notiz": "Label4"
-    },
-    {
-      "id": "1XDlfgGy7IP0RvUx9rTtYJx1pLk1youa4",
-      "name": "Bildschirmfoto 2026-10-07 um 23.03.22.png",
       "mimeType": "image/png",
       "notiz": "Label4"
     },
@@ -113,5 +107,5 @@
       "notiz": "Label1"
     }
   ],
-  "updatedAt": "2026-10-07T21:15:48.190Z"
+  "updatedAt": "2026-10-07T21:37:10.549Z"
 }
