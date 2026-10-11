@@ -3,6 +3,62 @@
   "description": "",
   "expiry": null,
   "heroFileId": null,
-  "files": [],
-  "updatedAt": "2026-10-11T09:57:02.192Z"
+  "files": [
+    {
+      "id": "1yjM1PiFNlqSns-vrlSRr-5meEBEcHyH_",
+      "name": "Bildschirmfoto 2026-10-11 um 11.55.24.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1GYwPJNjfTjjyvE-zhHlOoWQMJlYnLEiN",
+      "name": "Bildschirmfoto 2026-10-11 um 11.55.18.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1IEydCx8JRwA5Nt0oxOrK9r0hd-zZO0zs",
+      "name": "Bildschirmfoto 2026-10-11 um 11.52.15.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "193ECZIaQdfWKmG_02C6mPDrRNZI0avSu",
+      "name": "Bildschirmfoto 2026-10-11 um 11.51.56.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1F2ZRCBv0WOhNPwqqT33mOhUTfE7rU-Yh",
+      "name": "Bildschirmfoto 2026-10-11 um 11.51.00.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "16UHYMFtjVShcfAol_qNHufnJeKZyTzSU",
+      "name": "Bildschirmfoto 2026-10-11 um 11.38.09.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1913hzhFgirCCy54VNtTEQ1VWDd95Yxh9",
+      "name": "Bildschirmfoto 2026-10-11 um 11.37.51.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1pF_NHKoekvO2UwyrHxQNSquOCq0L20ej",
+      "name": "Bildschirmfoto 2026-10-11 um 11.37.36.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1rxP9-rOyJl6-R6VucXaeDTFebUSNqGYA",
+      "name": "Bildschirmfoto 2026-10-11 um 11.37.28.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1v9c6sCxfOjLgmcyDeFsu8Wo4mQ9vlJzi",
+      "name": "Bildschirmfoto 2026-10-11 um 11.37.15.png",
+      "mimeType": "image/png"
+    },
+    {
+      "id": "1cDIdoAav8mLt0jV6jl-IdK5l8fziUYNI",
+      "name": "Bildschirmfoto 2026-09-29 um 11.44.57.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "updatedAt": "2026-10-11T09:58:11.288Z"
 }
