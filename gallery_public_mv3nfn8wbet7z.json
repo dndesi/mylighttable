@@ -2,7 +2,7 @@
   "galleryName": "Salsa Festival",
   "description": "",
   "expiry": null,
-  "heroFileId": null,
+  "heroFileId": "1GYwPJNjfTjjyvE-zhHlOoWQMJlYnLEiN",
   "files": [
     {
       "id": "1yjM1PiFNlqSns-vrlSRr-5meEBEcHyH_",
@@ -22,11 +22,6 @@
     {
       "id": "193ECZIaQdfWKmG_02C6mPDrRNZI0avSu",
       "name": "Bildschirmfoto 2026-10-11 um 11.51.56.png",
-      "mimeType": "image/png"
-    },
-    {
-      "id": "1F2ZRCBv0WOhNPwqqT33mOhUTfE7rU-Yh",
-      "name": "Bildschirmfoto 2026-10-11 um 11.51.00.png",
       "mimeType": "image/png"
     },
     {
@@ -53,12 +48,7 @@
       "id": "1v9c6sCxfOjLgmcyDeFsu8Wo4mQ9vlJzi",
       "name": "Bildschirmfoto 2026-10-11 um 11.37.15.png",
       "mimeType": "image/png"
-    },
-    {
-      "id": "1cDIdoAav8mLt0jV6jl-IdK5l8fziUYNI",
-      "name": "Bildschirmfoto 2026-09-29 um 11.44.57.png",
-      "mimeType": "image/png"
     }
   ],
-  "updatedAt": "2026-10-11T09:58:11.288Z"
+  "updatedAt": "2026-10-11T09:59:43.243Z"
 }
