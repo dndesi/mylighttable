@@ -2,7 +2,7 @@
   "galleryName": "10 Jahre Kubáname",
   "description": "",
   "expiry": "2026-11-22",
-  "heroFileId": null,
+  "heroFileId": "1hQLtSLQ_DMhhKG_HtVYu_NXYN5SW5Sso",
   "files": [
     {
       "id": "1Vzxleki15nCUDbu4-9Rihk_GU6gjsYU3",
@@ -360,11 +360,6 @@
       "mimeType": "image/jpeg"
     },
     {
-      "id": "1KghrvVXbjBSgC2cMStuhGpZHPbpPxv9C",
-      "name": "_MG_9276.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
       "id": "1FJTgVYYnoIElb8tmGQiHlR8XsozyJXYZ",
       "name": "_46A2024.jpg",
       "mimeType": "image/jpeg"
@@ -560,5 +555,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-11-08T09:07:34.136Z"
+  "updatedAt": "2026-11-08T09:46:55.964Z"
 }
