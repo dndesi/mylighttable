@@ -25,11 +25,6 @@
       "mimeType": "image/jpeg"
     },
     {
-      "id": "1adV1t_gDTmCSEBlBLRq0UsVf4dUjtuOb",
-      "name": "_46A1949.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
       "id": "1etk1gu0Ryk0vb_9rDSARW5n_69wo3PE3",
       "name": "_46A1948.jpg",
       "mimeType": "image/jpeg"
@@ -37,11 +32,6 @@
     {
       "id": "14UY1xZ6px02bx31hlEsSvtPrMbCh16dh",
       "name": "_46A1947.jpg",
-      "mimeType": "image/jpeg"
-    },
-    {
-      "id": "1ktfhnuoIGDCDDqDFSmpwR94Of7UVGG0J",
-      "name": "_46A1946.jpg",
       "mimeType": "image/jpeg"
     },
     {
@@ -650,5 +640,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-11-09T21:22:23.821Z"
+  "updatedAt": "2026-11-09T21:23:21.705Z"
 }
