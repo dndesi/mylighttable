@@ -5,6 +5,11 @@
   "heroFileId": "1Ngn-On-rzGxjv-UQkz2rUY5JLK-QppOl",
   "files": [
     {
+      "id": "1Fi9azBccGXoGz2gj1ajCMdjJoDUCVDWd",
+      "name": "Etikett 04 -2.png",
+      "mimeType": "image/png"
+    },
+    {
       "id": "12RFCfgfJIgidHqjypXX9ynz0cWkCr_HI",
       "name": "Etikett 23.jpg",
       "mimeType": "image/jpeg"
@@ -115,5 +120,5 @@
       "mimeType": "image/jpeg"
     }
   ],
-  "updatedAt": "2026-08-26T09:03:19.980Z"
+  "updatedAt": "2026-11-14T08:16:31.136Z"
 }
